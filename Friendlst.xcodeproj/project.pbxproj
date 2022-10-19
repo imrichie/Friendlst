@@ -17,6 +17,7 @@
 		13B6C06528F8E3F30065CE4E /* FriendCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B6C06428F8E3F30065CE4E /* FriendCard.xib */; };
 		13B6C06728F901910065CE4E /* FriendCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B6C06628F901910065CE4E /* FriendCardTableViewCell.swift */; };
 		13B6C06928F9051D0065CE4E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B6C06828F9051D0065CE4E /* Constants.swift */; };
+		13B6C06C290068E40065CE4E /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B6C06B290068E40065CE4E /* DummyData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		13B6C06428F8E3F30065CE4E /* FriendCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCard.xib; sourceTree = "<group>"; };
 		13B6C06628F901910065CE4E /* FriendCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCardTableViewCell.swift; sourceTree = "<group>"; };
 		13B6C06828F9051D0065CE4E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		13B6C06B290068E40065CE4E /* DummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +70,7 @@
 				13B6C04F28F8C49D0065CE4E /* SceneDelegate.swift */,
 				13B6C05128F8C49D0065CE4E /* ViewController.swift */,
 				13B6C06628F901910065CE4E /* FriendCardTableViewCell.swift */,
-				13B6C06828F9051D0065CE4E /* Constants.swift */,
+				13B6C06A290068D60065CE4E /* Utilities */,
 				13B6C06428F8E3F30065CE4E /* FriendCard.xib */,
 				13B6C05328F8C49D0065CE4E /* Main.storyboard */,
 				13B6C05B28F8C49F0065CE4E /* LaunchScreen.storyboard */,
@@ -77,6 +79,15 @@
 				13B6C05628F8C49D0065CE4E /* Friendlst.xcdatamodeld */,
 			);
 			path = Friendlst;
+			sourceTree = "<group>";
+		};
+		13B6C06A290068D60065CE4E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				13B6C06828F9051D0065CE4E /* Constants.swift */,
+				13B6C06B290068E40065CE4E /* DummyData.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,6 +164,7 @@
 			files = (
 				13B6C06728F901910065CE4E /* FriendCardTableViewCell.swift in Sources */,
 				13B6C05228F8C49D0065CE4E /* ViewController.swift in Sources */,
+				13B6C06C290068E40065CE4E /* DummyData.swift in Sources */,
 				13B6C05828F8C49D0065CE4E /* Friendlst.xcdatamodeld in Sources */,
 				13B6C04E28F8C49D0065CE4E /* AppDelegate.swift in Sources */,
 				13B6C05028F8C49D0065CE4E /* SceneDelegate.swift in Sources */,
