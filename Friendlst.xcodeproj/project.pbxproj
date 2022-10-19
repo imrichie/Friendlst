@@ -14,6 +14,9 @@
 		13B6C05828F8C49D0065CE4E /* Friendlst.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 13B6C05628F8C49D0065CE4E /* Friendlst.xcdatamodeld */; };
 		13B6C05A28F8C49F0065CE4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B6C05928F8C49F0065CE4E /* Assets.xcassets */; };
 		13B6C05D28F8C49F0065CE4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13B6C05B28F8C49F0065CE4E /* LaunchScreen.storyboard */; };
+		13B6C06528F8E3F30065CE4E /* FriendCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B6C06428F8E3F30065CE4E /* FriendCard.xib */; };
+		13B6C06728F901910065CE4E /* FriendCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B6C06628F901910065CE4E /* FriendCardTableViewCell.swift */; };
+		13B6C06928F9051D0065CE4E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B6C06828F9051D0065CE4E /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		13B6C05928F8C49F0065CE4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13B6C05C28F8C49F0065CE4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		13B6C05E28F8C49F0065CE4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13B6C06428F8E3F30065CE4E /* FriendCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCard.xib; sourceTree = "<group>"; };
+		13B6C06628F901910065CE4E /* FriendCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCardTableViewCell.swift; sourceTree = "<group>"; };
+		13B6C06828F9051D0065CE4E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,10 +67,13 @@
 				13B6C04D28F8C49D0065CE4E /* AppDelegate.swift */,
 				13B6C04F28F8C49D0065CE4E /* SceneDelegate.swift */,
 				13B6C05128F8C49D0065CE4E /* ViewController.swift */,
+				13B6C06628F901910065CE4E /* FriendCardTableViewCell.swift */,
+				13B6C06828F9051D0065CE4E /* Constants.swift */,
+				13B6C06428F8E3F30065CE4E /* FriendCard.xib */,
 				13B6C05328F8C49D0065CE4E /* Main.storyboard */,
 				13B6C05B28F8C49F0065CE4E /* LaunchScreen.storyboard */,
-				13B6C05928F8C49F0065CE4E /* Assets.xcassets */,
 				13B6C05E28F8C49F0065CE4E /* Info.plist */,
+				13B6C05928F8C49F0065CE4E /* Assets.xcassets */,
 				13B6C05628F8C49D0065CE4E /* Friendlst.xcdatamodeld */,
 			);
 			path = Friendlst;
@@ -129,6 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B6C05D28F8C49F0065CE4E /* LaunchScreen.storyboard in Resources */,
+				13B6C06528F8E3F30065CE4E /* FriendCard.xib in Resources */,
 				13B6C05A28F8C49F0065CE4E /* Assets.xcassets in Resources */,
 				13B6C05528F8C49D0065CE4E /* Main.storyboard in Resources */,
 			);
@@ -141,10 +151,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13B6C06728F901910065CE4E /* FriendCardTableViewCell.swift in Sources */,
 				13B6C05228F8C49D0065CE4E /* ViewController.swift in Sources */,
 				13B6C05828F8C49D0065CE4E /* Friendlst.xcdatamodeld in Sources */,
 				13B6C04E28F8C49D0065CE4E /* AppDelegate.swift in Sources */,
 				13B6C05028F8C49D0065CE4E /* SceneDelegate.swift in Sources */,
+				13B6C06928F9051D0065CE4E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +309,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -305,9 +318,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.richieflores.Friendlst;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -324,6 +340,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -332,9 +349,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.richieflores.Friendlst;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

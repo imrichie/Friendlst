@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" id="lma-J4-gCJ" customClass="FriendCardTableViewCell" customModule="Friendlst" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="88"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lma-J4-gCJ" id="nGd-Bj-yn0">
+                <rect key="frame" x="0.0" y="0.0" width="390" height="88"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friend Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GIf-QW-r0N">
+                        <rect key="frame" x="104" y="15.999999999999998" width="121.66666666666669" height="26.333333333333329"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birthday" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfJ-8f-FPu">
+                        <rect key="frame" x="103.99999999999999" y="46.333333333333336" width="57.333333333333329" height="18.000000000000007"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="LEB-Ge-Fvv">
+                        <rect key="frame" x="16" y="9.6666666666666643" width="72" height="69.333333333333329"/>
+                        <color key="tintColor" name="AccentColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="72" id="fMr-FJ-Cro"/>
+                            <constraint firstAttribute="width" constant="72" id="tKf-3t-tDt"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="GIf-QW-r0N" firstAttribute="top" secondItem="nGd-Bj-yn0" secondAttribute="top" constant="16" id="A3A-cN-moA"/>
+                    <constraint firstItem="MfJ-8f-FPu" firstAttribute="leading" secondItem="LEB-Ge-Fvv" secondAttribute="trailing" constant="16" id="HCq-DZ-fur"/>
+                    <constraint firstItem="GIf-QW-r0N" firstAttribute="leading" secondItem="LEB-Ge-Fvv" secondAttribute="trailing" constant="16" id="JfM-ie-bxZ"/>
+                    <constraint firstItem="LEB-Ge-Fvv" firstAttribute="top" secondItem="nGd-Bj-yn0" secondAttribute="top" constant="8" id="gWh-PK-8LI"/>
+                    <constraint firstAttribute="bottom" secondItem="LEB-Ge-Fvv" secondAttribute="bottom" constant="8" id="gea-gV-dch"/>
+                    <constraint firstItem="MfJ-8f-FPu" firstAttribute="top" secondItem="GIf-QW-r0N" secondAttribute="bottom" constant="4" id="mlb-El-r32"/>
+                    <constraint firstItem="LEB-Ge-Fvv" firstAttribute="leading" secondItem="nGd-Bj-yn0" secondAttribute="leading" constant="16" id="twU-aR-tFP"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="artworkImageView" destination="LEB-Ge-Fvv" id="OBw-vr-Adp"/>
+                <outlet property="birthdayLabel" destination="MfJ-8f-FPu" id="3hk-ka-pMn"/>
+                <outlet property="nameLabel" destination="GIf-QW-r0N" id="SE2-ge-SE9"/>
+            </connections>
+            <point key="canvasLocation" x="128" y="-64"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="person" catalog="system" width="128" height="121"/>
+        <namedColor name="AccentColor">
+            <color red="0.023529411764705882" green="0.15686274509803921" blue="0.23921568627450981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
