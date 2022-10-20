@@ -13,32 +13,18 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // load dummy data
         dataManager.loadData()
-        
-        // verify data is loaded into array
-        if (!dataManager.persons.isEmpty) {
-            print("Number of Persons: \(dataManager.persons.count)")
-        }
-        
-        // configure the navigation bar
-        if #available(iOS 13, *) {
-            configureNavbar()
-        }
+        configureNavbar()
     }
     
-    // MARK: - Availability Features
-    @available(iOS 13, *)
+    // MARK: - Helper Functions
     func configureNavbar() {
-        let navBarAppearance = UINavigationBarAppearance()
-        navBarAppearance.configureWithOpaqueBackground()
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.backgroundColor = .tintColor
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemMint
         
-        navigationController?.navigationBar.standardAppearance = navBarAppearance
-        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-        navigationController?.navigationBar.topItem?.rightBarButtonItem?.tintColor = .white
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.standardAppearance = appearance
     }
     
     //MARK: - TableView Delegates
@@ -62,7 +48,7 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110.0
+        return 100.0
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

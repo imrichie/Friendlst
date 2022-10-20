@@ -14,10 +14,9 @@
 		13B6C05828F8C49D0065CE4E /* Friendlst.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 13B6C05628F8C49D0065CE4E /* Friendlst.xcdatamodeld */; };
 		13B6C05A28F8C49F0065CE4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B6C05928F8C49F0065CE4E /* Assets.xcassets */; };
 		13B6C05D28F8C49F0065CE4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13B6C05B28F8C49F0065CE4E /* LaunchScreen.storyboard */; };
-		13B6C06528F8E3F30065CE4E /* FriendCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B6C06428F8E3F30065CE4E /* FriendCard.xib */; };
 		13B6C06728F901910065CE4E /* FriendCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B6C06628F901910065CE4E /* FriendCardTableViewCell.swift */; };
 		13B6C06928F9051D0065CE4E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B6C06828F9051D0065CE4E /* Constants.swift */; };
-		13B6C06C290068E40065CE4E /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B6C06B290068E40065CE4E /* DummyData.swift */; };
+		13B6C06C290068E40065CE4E /* SamplePerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B6C06B290068E40065CE4E /* SamplePerson.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,10 +29,9 @@
 		13B6C05928F8C49F0065CE4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13B6C05C28F8C49F0065CE4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		13B6C05E28F8C49F0065CE4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		13B6C06428F8E3F30065CE4E /* FriendCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCard.xib; sourceTree = "<group>"; };
 		13B6C06628F901910065CE4E /* FriendCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCardTableViewCell.swift; sourceTree = "<group>"; };
 		13B6C06828F9051D0065CE4E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		13B6C06B290068E40065CE4E /* DummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
+		13B6C06B290068E40065CE4E /* SamplePerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePerson.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,14 +66,12 @@
 			children = (
 				13B6C04D28F8C49D0065CE4E /* AppDelegate.swift */,
 				13B6C04F28F8C49D0065CE4E /* SceneDelegate.swift */,
-				13B6C05128F8C49D0065CE4E /* ViewController.swift */,
-				13B6C06628F901910065CE4E /* FriendCardTableViewCell.swift */,
+				13B6C06E2900DC610065CE4E /* Model */,
+				13B6C06F2900DC8A0065CE4E /* Views */,
+				13B6C06D2900DC3E0065CE4E /* Controllers */,
 				13B6C06A290068D60065CE4E /* Utilities */,
-				13B6C06428F8E3F30065CE4E /* FriendCard.xib */,
-				13B6C05328F8C49D0065CE4E /* Main.storyboard */,
-				13B6C05B28F8C49F0065CE4E /* LaunchScreen.storyboard */,
-				13B6C05E28F8C49F0065CE4E /* Info.plist */,
 				13B6C05928F8C49F0065CE4E /* Assets.xcassets */,
+				13B6C05E28F8C49F0065CE4E /* Info.plist */,
 				13B6C05628F8C49D0065CE4E /* Friendlst.xcdatamodeld */,
 			);
 			path = Friendlst;
@@ -85,9 +81,34 @@
 			isa = PBXGroup;
 			children = (
 				13B6C06828F9051D0065CE4E /* Constants.swift */,
-				13B6C06B290068E40065CE4E /* DummyData.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		13B6C06D2900DC3E0065CE4E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				13B6C05128F8C49D0065CE4E /* ViewController.swift */,
+				13B6C06628F901910065CE4E /* FriendCardTableViewCell.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		13B6C06E2900DC610065CE4E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				13B6C06B290068E40065CE4E /* SamplePerson.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		13B6C06F2900DC8A0065CE4E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				13B6C05328F8C49D0065CE4E /* Main.storyboard */,
+				13B6C05B28F8C49F0065CE4E /* LaunchScreen.storyboard */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,7 +170,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B6C05D28F8C49F0065CE4E /* LaunchScreen.storyboard in Resources */,
-				13B6C06528F8E3F30065CE4E /* FriendCard.xib in Resources */,
 				13B6C05A28F8C49F0065CE4E /* Assets.xcassets in Resources */,
 				13B6C05528F8C49D0065CE4E /* Main.storyboard in Resources */,
 			);
@@ -164,7 +184,7 @@
 			files = (
 				13B6C06728F901910065CE4E /* FriendCardTableViewCell.swift in Sources */,
 				13B6C05228F8C49D0065CE4E /* ViewController.swift in Sources */,
-				13B6C06C290068E40065CE4E /* DummyData.swift in Sources */,
+				13B6C06C290068E40065CE4E /* SamplePerson.swift in Sources */,
 				13B6C05828F8C49D0065CE4E /* Friendlst.xcdatamodeld in Sources */,
 				13B6C04E28F8C49D0065CE4E /* AppDelegate.swift in Sources */,
 				13B6C05028F8C49D0065CE4E /* SceneDelegate.swift in Sources */,
