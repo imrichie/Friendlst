@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="c99-qC-bXf" customClass="FriendTableViewCell" customModule="Friendlst" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c99-qC-bXf" id="6em-H9-jMQ">
+                <rect key="frame" x="0.0" y="0.0" width="390" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="WYG-w2-QOt">
+                        <rect key="frame" x="20" y="17" width="68" height="66.666666666666671"/>
+                        <color key="tintColor" name="AccentColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="68" id="ZpR-va-shE"/>
+                            <constraint firstAttribute="height" constant="68" id="gEI-bf-1Q9"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Q7c-vH-qmd">
+                        <rect key="frame" x="104" y="16" width="48" height="68"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOY-fb-gay">
+                                <rect key="frame" x="0.0" y="0.0" width="48" height="24"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTr-rS-U7w">
+                                <rect key="frame" x="0.0" y="31.000000000000004" width="48" height="15.666666666666668"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4LX-Ge-fio">
+                                <rect key="frame" x="0.0" y="53.666666666666671" width="48" height="14.333333333333329"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="Q7c-vH-qmd" secondAttribute="bottom" constant="16" id="KCr-6S-Bf0"/>
+                    <constraint firstItem="Q7c-vH-qmd" firstAttribute="top" secondItem="6em-H9-jMQ" secondAttribute="top" constant="16" id="LWR-kQ-Air"/>
+                    <constraint firstItem="WYG-w2-QOt" firstAttribute="leading" secondItem="6em-H9-jMQ" secondAttribute="leading" constant="20" id="TUE-UP-PNd"/>
+                    <constraint firstItem="Q7c-vH-qmd" firstAttribute="centerY" secondItem="6em-H9-jMQ" secondAttribute="centerY" id="U98-gk-KJp"/>
+                    <constraint firstItem="Q7c-vH-qmd" firstAttribute="leading" secondItem="WYG-w2-QOt" secondAttribute="trailing" constant="16" id="gtu-Ns-xiJ"/>
+                    <constraint firstItem="WYG-w2-QOt" firstAttribute="centerY" secondItem="6em-H9-jMQ" secondAttribute="centerY" id="yHB-56-xCL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="birthdayLabel" destination="4LX-Ge-fio" id="F6U-fO-wBW"/>
+                <outlet property="cityLabel" destination="YTr-rS-U7w" id="rSm-h0-LTF"/>
+                <outlet property="nameLabel" destination="IOY-fb-gay" id="9Zs-Nu-WBB"/>
+            </connections>
+            <point key="canvasLocation" x="-310.76923076923077" y="-23.459715639810426"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="person.circle" catalog="system" width="128" height="123"/>
+        <namedColor name="AccentColor">
+            <color red="0.023529411764705882" green="0.15686274509803921" blue="0.23921568627450981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

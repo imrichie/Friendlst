@@ -11,7 +11,7 @@ class SamplePerson {
     var firstName: String
     var lastName: String
     var city: String = "Unknown"
-    var age : Int = 0
+    var birthDate: Date = Date() 
     
     init(firstName: String, lastName: String, city: String) {
         self.firstName = firstName

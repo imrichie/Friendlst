@@ -15,6 +15,7 @@ class ViewController: UITableViewController {
         
         dataManager.loadData()
         configureNavbar()
+        registerTableViewCells()
     }
     
     // MARK: - Helper Functions
@@ -27,20 +28,21 @@ class ViewController: UITableViewController {
         navigationController?.navigationBar.standardAppearance = appearance
     }
     
+    func registerTableViewCells() {
+        let personCell = UINib(nibName: "FriendTableViewCell", bundle: nil)
+        self.tableView.register(personCell, forCellReuseIdentifier: CellNames.friendCell)
+    }
+    
     //MARK: - TableView Delegates
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "personCell") {
-            let person = dataManager.persons[indexPath.row]
-            let personFullName = "\(person.lastName), \(person.firstName)"
-            
-            cell.textLabel?.text = personFullName
-            cell.detailTextLabel?.text = person.city
-            
-            return cell
-        } else {
-            let defaultCell = UITableViewCell()
-            return defaultCell
-        }
+        let friend = dataManager.persons[indexPath.row]
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellNames.friendCell) as! FriendTableViewCell
+        cell.nameLabel.text = "\(friend.lastName), \(friend.firstName)"
+        cell.cityLabel.text = friend.city
+        cell.birthdayLabel.text = "\(friend.birthDate)"
+        
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct TableView {
-    static let friendCardCell = "FriendCell"
+struct CellNames {
+    static let friendCell = "FriendCell"
 }
