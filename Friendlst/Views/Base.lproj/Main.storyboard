@@ -11,7 +11,7 @@
         <scene sceneID="mJb-P4-z0d">
             <objects>
                 <tableViewController id="Mdv-uF-LNx" customClass="ViewController" customModule="Friendlst" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="m6T-jb-BK3">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="m6T-jb-BK3">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -21,7 +21,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Friendlst" id="JEY-u5-3hf">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bec-KC-uVR"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bec-KC-uVR">
+                            <connections>
+                                <action selector="addFriend:" destination="Mdv-uF-LNx" id="7ac-jJ-t2F"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DtK-Rj-aXb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
