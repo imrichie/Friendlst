@@ -11,21 +11,47 @@
         <scene sceneID="mJb-P4-z0d">
             <objects>
                 <tableViewController id="Mdv-uF-LNx" customClass="ViewController" customModule="Friendlst" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="m6T-jb-BK3">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="m6T-jb-BK3">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ListCell" textLabel="cjl-Sq-U0G" detailTextLabel="4cN-51-Jxv" imageView="EM8-RO-rZp" rowHeight="88" style="IBUITableViewCellStyleSubtitle" id="aTi-ec-LPx">
+                                <rect key="frame" x="0.0" y="50" width="390" height="88"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aTi-ec-LPx" id="8up-2J-6TD">
+                                    <rect key="frame" x="0.0" y="0.0" width="359.66666666666669" height="88"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cjl-Sq-U0G">
+                                            <rect key="frame" x="59" y="18" width="41" height="26.333333333333332"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" alpha="0.65000000000000002" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4cN-51-Jxv">
+                                            <rect key="frame" x="59" y="48.333333333333329" width="52.666666666666664" height="18"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="circle" catalog="system" id="EM8-RO-rZp">
+                                            <rect key="frame" x="22.166666666666668" y="34.666666666666664" width="19.666666666666664" height="19"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Mdv-uF-LNx" id="QMr-6a-s4n"/>
                             <outlet property="delegate" destination="Mdv-uF-LNx" id="75w-IS-oS8"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Friendlst" id="JEY-u5-3hf">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bec-KC-uVR">
-                            <connections>
-                                <action selector="addFriend:" destination="Mdv-uF-LNx" id="7ac-jJ-t2F"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bec-KC-uVR"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DtK-Rj-aXb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -53,6 +79,7 @@
     </scenes>
     <color key="tintColor" name="AccentColor"/>
     <resources>
+        <image name="circle" catalog="system" width="128" height="123"/>
         <namedColor name="AccentColor">
             <color red="0.023529411764705882" green="0.15686274509803921" blue="0.23921568627450981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

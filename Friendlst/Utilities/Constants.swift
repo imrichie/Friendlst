@@ -9,4 +9,5 @@ import Foundation
 
 struct CellNames {
     static let friendCell = "FriendCell"
+    static let defaultCell = "ListCell"
 }
