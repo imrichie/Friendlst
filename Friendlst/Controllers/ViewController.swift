@@ -45,6 +45,7 @@ class ViewController: UITableViewController {
         content?.image = UIImage(systemName: "circle")
         
         cell?.contentConfiguration = content
+        cell?.accessoryType = .disclosureIndicator
         
         return cell!
     }
@@ -54,6 +55,6 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 88.00
+        return 88.0
     }
 }
