@@ -16,6 +16,7 @@
 		13B6C05D28F8C49F0065CE4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13B6C05B28F8C49F0065CE4E /* LaunchScreen.storyboard */; };
 		13B6C06928F9051D0065CE4E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B6C06828F9051D0065CE4E /* Constants.swift */; };
 		13B6C06C290068E40065CE4E /* SamplePerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B6C06B290068E40065CE4E /* SamplePerson.swift */; };
+		13CB81682910E3C600D77B73 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CB81672910E3C500D77B73 /* AddFriendViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		13B6C05E28F8C49F0065CE4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13B6C06828F9051D0065CE4E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		13B6C06B290068E40065CE4E /* SamplePerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePerson.swift; sourceTree = "<group>"; };
+		13CB81672910E3C500D77B73 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				13B6C05128F8C49D0065CE4E /* ViewController.swift */,
+				13CB81672910E3C500D77B73 /* AddFriendViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B6C05228F8C49D0065CE4E /* ViewController.swift in Sources */,
+				13CB81682910E3C600D77B73 /* AddFriendViewController.swift in Sources */,
 				13B6C06C290068E40065CE4E /* SamplePerson.swift in Sources */,
 				13B6C05828F8C49D0065CE4E /* Friendlst.xcdatamodeld in Sources */,
 				13B6C04E28F8C49D0065CE4E /* AppDelegate.swift in Sources */,
