@@ -38,9 +38,9 @@ class ViewController: UITableViewController {
         
         var content = cell?.defaultContentConfiguration()
         content?.text = person.firstName
-        content?.textProperties.font = .systemFont(ofSize: 20.0)
+        content?.textProperties.font = .systemFont(ofSize: 17.0)
         content?.secondaryText = person.city
-        content?.secondaryTextProperties.font = .systemFont(ofSize: 15.0)
+        content?.secondaryTextProperties.font = .systemFont(ofSize: 13.0)
         content?.secondaryTextProperties.color = .black.withAlphaComponent(0.65)
         content?.image = UIImage(systemName: "circle")
         

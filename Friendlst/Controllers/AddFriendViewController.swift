@@ -12,19 +12,21 @@ class AddFriendViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    @IBAction func donePressed(_ sender: UIBarButtonItem) {
+        navigationController?.popViewController(animated: true)
+    }
+    
 
     // MARK: - Table view data source
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         switch section {
         case 0:
-            return 3
+            return 4
         case 1:
             return 1
         default:
             return 1
         }
     }
-
 }
