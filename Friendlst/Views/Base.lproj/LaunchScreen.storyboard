@@ -16,16 +16,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Friendlst-splash-logo" translatesAutoresizingMaskIntoConstraints="NO" id="3vG-WG-1rm">
-                                <rect key="frame" x="-17" y="205" width="425" height="434"/>
+                                <rect key="frame" x="16" y="240" width="359" height="364"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.023529411764705882" green="0.15686274509803921" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="3vG-WG-1rm" secondAttribute="trailing" constant="-18" id="0I4-nd-J5X"/>
-                            <constraint firstItem="3vG-WG-1rm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="158" id="3np-Wj-6WB"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3vG-WG-1rm" secondAttribute="bottom" constant="171" id="ZsR-cT-caY"/>
-                            <constraint firstItem="3vG-WG-1rm" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="-17" id="jGI-X0-FTc"/>
+                            <constraint firstAttribute="trailing" secondItem="3vG-WG-1rm" secondAttribute="trailing" constant="15" id="0I4-nd-J5X"/>
+                            <constraint firstItem="3vG-WG-1rm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="193" id="3np-Wj-6WB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3vG-WG-1rm" secondAttribute="bottom" constant="206" id="ZsR-cT-caY"/>
+                            <constraint firstItem="3vG-WG-1rm" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="16" id="jGI-X0-FTc"/>
                         </constraints>
                     </view>
                 </viewController>

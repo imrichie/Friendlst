@@ -8,9 +8,20 @@
 import UIKit
 
 class AddFriendViewController: UITableViewController {
-
+    
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var cityTextField: UITextField!
+    @IBOutlet weak var stateTextField: UITextField!
+    @IBOutlet weak var commentsTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        firstNameTextField.becomeFirstResponder()
     }
     
     @IBAction func donePressed(_ sender: UIBarButtonItem) {
