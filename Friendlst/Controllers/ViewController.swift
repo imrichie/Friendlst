@@ -8,12 +8,12 @@
 import UIKit
 
 class ViewController: UITableViewController {
-    let dataManager = SampleDataManager()
+    let dataManager = DataManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataManager.loadDefaultData()
+        dataManager.loadSampleFriendData()
         configureNavbar()
     }
     
@@ -29,17 +29,17 @@ class ViewController: UITableViewController {
     
     // MARK: - TableView Delegates
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataManager.defaultDataArray.count
+        return dataManager.friendsList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellNames.defaultCell)
-        let person = dataManager.defaultDataArray[indexPath.row]
+        let person = dataManager.friendsList[indexPath.row]
         
         var content = cell?.defaultContentConfiguration()
-        content?.text = person.firstName
+        content?.text = "\(person.lastName), \(person.firstName)"
         content?.textProperties.font = .systemFont(ofSize: 17.0)
-        content?.secondaryText = person.city
+        content?.secondaryText = person.location
         content?.secondaryTextProperties.font = .systemFont(ofSize: 13.0)
         content?.secondaryTextProperties.color = .black.withAlphaComponent(0.65)
         content?.image = UIImage(systemName: "circle")
@@ -56,5 +56,20 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 88.0
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SegueNames.addFriendSegue {
+            let controller = segue.destination as! AddFriendViewController
+            controller.delegate = self
+        }
+    }
+}
+
+extension ViewController: AddFriendViewControllerDelegate {
+    func addFriendViewController(_ controller: AddFriendViewController, didFinishAddingFriend friend: Friend) {
+        dataManager.addFriend(newFriend: friend)
+        tableView.reloadData()
     }
 }

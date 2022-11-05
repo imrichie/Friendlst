@@ -33,7 +33,7 @@
                     <navigationItem key="navigationItem" title="Friendlst" id="JEY-u5-3hf">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bec-KC-uVR">
                             <connections>
-                                <segue destination="Csp-J4-4T2" kind="show" id="6zS-aT-zbD"/>
+                                <segue destination="Csp-J4-4T2" kind="show" identifier="AddFriendSeque" id="geP-Ts-Jxf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -180,11 +180,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="cityTextField" destination="RVn-gk-Hxx" id="b21-u3-aEv"/>
-                        <outlet property="commentsTextView" destination="QGP-wO-o3x" id="rcQ-7q-5JQ"/>
-                        <outlet property="firstNameTextField" destination="RVn-gk-Hxx" id="Qf5-6C-hs7"/>
-                        <outlet property="lastNameTextField" destination="TKO-s0-dXg" id="glg-Ww-Te9"/>
-                        <outlet property="stateTextField" destination="fLA-43-Cht" id="7GQ-QX-0GB"/>
+                        <outlet property="cityText" destination="RVn-gk-Hxx" id="V9u-fR-nXC"/>
+                        <outlet property="commentsTextView" destination="QGP-wO-o3x" id="y9r-Gl-cX3"/>
+                        <outlet property="firstNameText" destination="0u0-kB-n6u" id="6j0-TA-aoF"/>
+                        <outlet property="lastNameText" destination="TKO-s0-dXg" id="ohn-0h-OZn"/>
+                        <outlet property="stateText" destination="fLA-43-Cht" id="RkH-Bp-bsm"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vVm-6z-AqE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

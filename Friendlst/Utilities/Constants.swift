@@ -11,3 +11,8 @@ struct CellNames {
     static let friendCell = "FriendCell"
     static let defaultCell = "ListCell"
 }
+
+struct SegueNames {
+    static let addFriendSegue = "AddFriendSeque"
+    static let editFriendSegue = "EditFriendSegue"
+}
