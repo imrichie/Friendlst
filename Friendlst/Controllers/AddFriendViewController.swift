@@ -48,7 +48,6 @@ class AddFriendViewController: UITableViewController {
         
         navigationController?.popViewController(animated: true)
     }
-    
 
     // MARK: - TableView Data Source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,6 +74,7 @@ class AddFriendViewController: UITableViewController {
     }
 }
 
+// MARK: - Extensions
 extension UITextField {
     func isValid() -> Bool {
         guard let text = text, !text.isEmpty else { return false }

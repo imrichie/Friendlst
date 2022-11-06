@@ -1,17 +1,11 @@
 //
-//  DummyData.swift
+//  DataManager.swift
 //  Friendlst
 //
-//  Created by Richie Flores on 10/19/22.
+//  Created by Richie Flores on 11/5/22.
 //
 
 import Foundation
-
-class Friend {
-    var firstName = ""
-    var lastName = ""
-    var location = ""
-}
 
 class DataManager {
     var friendsList = [Friend]()
