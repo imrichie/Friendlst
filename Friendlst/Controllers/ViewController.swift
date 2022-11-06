@@ -58,6 +58,21 @@ class ViewController: UITableViewController {
         return 72.0
     }
     
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteSwipeAction = UIContextualAction(style: .destructive, title: "Remove", handler: {action, view, _ in
+            print(">>> Deleting Friend")
+            self.dataManager.friendsList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            return
+        })
+        
+        let editSwipeAction = UIContextualAction(style: .normal, title: "Edit", handler: {action, view, _ in
+            return
+        })
+        
+        return UISwipeActionsConfiguration(actions: [deleteSwipeAction, editSwipeAction])
+    }
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueNames.addFriendSegue {
@@ -69,7 +84,10 @@ class ViewController: UITableViewController {
 
 extension ViewController: AddFriendViewControllerDelegate {
     func addFriendViewController(_ controller: AddFriendViewController, didFinishAddingFriend friend: Friend) {
+        let newRowIndex = dataManager.friendsList.count
         dataManager.addFriend(newFriend: friend)
-        tableView.reloadData()
+        tableView.insertRows(at: [IndexPath(row: newRowIndex, section: 0)], with: .fade)
+        
+        navigationController?.popViewController(animated: true)
     }
 }

@@ -45,8 +45,6 @@ class AddFriendViewController: UITableViewController {
         if let delegate = delegate {
             delegate.addFriendViewController(self, didFinishAddingFriend: newFriend)
         }
-        
-        navigationController?.popViewController(animated: true)
     }
 
     // MARK: - TableView Data Source
