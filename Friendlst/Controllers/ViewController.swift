@@ -60,17 +60,12 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteSwipeAction = UIContextualAction(style: .destructive, title: "Remove", handler: {action, view, _ in
-            print(">>> Deleting Friend")
             self.dataManager.friendsList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             return
         })
         
-        let editSwipeAction = UIContextualAction(style: .normal, title: "Edit", handler: {action, view, _ in
-            return
-        })
-        
-        return UISwipeActionsConfiguration(actions: [deleteSwipeAction, editSwipeAction])
+        return UISwipeActionsConfiguration(actions: [deleteSwipeAction])
     }
     
     // MARK: - Navigation
@@ -78,6 +73,13 @@ class ViewController: UITableViewController {
         if segue.identifier == SegueNames.addFriendSegue {
             let controller = segue.destination as! AddFriendViewController
             controller.delegate = self
+        } else if (segue.identifier == SegueNames.editFriendSegue) {
+            let controller = segue.destination as! AddFriendViewController
+            controller.delegate = self
+            
+            if let selectedRow = tableView.indexPathForSelectedRow?.row {
+                controller.existingFriend = dataManager.friendsList[selectedRow]
+            }
         }
     }
 }

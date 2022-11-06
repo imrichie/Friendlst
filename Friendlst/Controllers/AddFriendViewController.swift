@@ -20,9 +20,20 @@ class AddFriendViewController: UITableViewController {
     @IBOutlet weak var commentsTextView: UITextView!
     
     weak var delegate: AddFriendViewControllerDelegate?
+    weak var existingFriend: Friend? 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let friendToEdit = existingFriend {
+            self.title = "Edit Friend"
+            let city = friendToEdit.location.split(separator: ",")
+            firstNameText.text = friendToEdit.firstName
+            lastNameText.text = friendToEdit.lastName
+            cityText.text = "\(city[0])"
+            stateText.text = "\(city[1].dropFirst())"
+            commentsTextView.text = friendToEdit.comments
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
