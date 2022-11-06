@@ -30,16 +30,17 @@ class AddFriendViewController: UITableViewController {
         firstNameText.becomeFirstResponder()
     }
     
+    // MARK: - Event Handlers
     @IBAction func donePressed(_ sender: UIBarButtonItem) {
-        guard let firstName = firstNameText.text else { return }
-        guard let lastName = lastNameText.text else { return }
-        guard let city = cityText.text else { return }
-        guard let state = stateText.text else { return }
+        guard firstNameText.isValid() else { presentAlertController(entry: "First name"); return }
+        guard lastNameText.isValid() else { presentAlertController(entry: "Last name"); return }
+        guard cityText.isValid() else { presentAlertController(entry: "City"); return }
+        guard stateText.isValid() else { presentAlertController(entry: "State"); return }
         
-        let newFriend = Friend()
-        newFriend.firstName = firstName
-        newFriend.lastName = lastName
-        newFriend.location = "\(city), \(state)"
+        let newFriend: Friend = Friend()
+        newFriend.firstName = firstNameText.text!
+        newFriend.lastName = lastNameText.text!
+        newFriend.location = "\(cityText.text!), \(stateText.text!)"
         
         if let delegate = delegate {
             delegate.addFriendViewController(self, didFinishAddingFriend: newFriend)
@@ -49,7 +50,7 @@ class AddFriendViewController: UITableViewController {
     }
     
 
-    // MARK: - Table view data source
+    // MARK: - TableView Data Source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
@@ -59,5 +60,25 @@ class AddFriendViewController: UITableViewController {
         default:
             return 1
         }
+    }
+    
+    // MARK: - Private Functions
+    func isTextFieldEntriesValid() -> Bool {
+        return true
+    }
+    
+    func presentAlertController(entry: String) {
+        let alert = UIAlertController(title: "Oops", message: "\(entry) is a required field", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
+}
+
+extension UITextField {
+    func isValid() -> Bool {
+        guard let text = text, !text.isEmpty else { return false }
+        
+        return true
     }
 }

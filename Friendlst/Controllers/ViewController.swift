@@ -42,7 +42,7 @@ class ViewController: UITableViewController {
         content?.secondaryText = person.location
         content?.secondaryTextProperties.font = .systemFont(ofSize: 13.0)
         content?.secondaryTextProperties.color = .black.withAlphaComponent(0.65)
-        content?.image = UIImage(systemName: "circle")
+        content?.image = UIImage(systemName: "person.crop.circle")
         
         cell?.contentConfiguration = content
         cell?.accessoryType = .disclosureIndicator
@@ -55,7 +55,7 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 88.0
+        return 72.0
     }
     
     // MARK: - Navigation
