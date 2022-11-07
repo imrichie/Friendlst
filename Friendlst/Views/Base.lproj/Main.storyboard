@@ -144,7 +144,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Comments" id="4qE-CV-b3i">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentsCell" rowHeight="154" id="Mt8-GK-2fL">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommentsCell" rowHeight="154" id="Mt8-GK-2fL">
                                         <rect key="frame" x="20" y="331.33333015441895" width="350" height="154"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mt8-GK-2fL" id="qCg-fJ-JMr">

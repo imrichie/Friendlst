@@ -53,12 +53,14 @@ class AddFriendViewController: UITableViewController {
             existingFriend.firstName = firstNameText.text!
             existingFriend.lastName = lastNameText.text!
             existingFriend.location = "\(cityText.text!), \(stateText.text!)"
+            existingFriend.comments = commentsTextView.text!
             delegate?.addFriendViewController(self, didFinishedEditingFriend: existingFriend)
         } else {
             let newFriend: Friend = Friend()
             newFriend.firstName = firstNameText.text!
             newFriend.lastName = lastNameText.text!
             newFriend.location = "\(cityText.text!), \(stateText.text!)"
+            newFriend.comments = commentsTextView.text!
             delegate?.addFriendViewController(self, didFinishAddingFriend: newFriend)
         }
     }
