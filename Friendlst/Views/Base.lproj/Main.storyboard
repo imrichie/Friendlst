@@ -48,7 +48,7 @@
         <!--Add Friend-->
         <scene sceneID="LdR-uV-Qn3">
             <objects>
-                <tableViewController id="Csp-J4-4T2" customClass="AddFriendViewController" customModule="Friendlst" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AddFriendViewController" id="Csp-J4-4T2" customClass="AddFriendViewController" customModule="Friendlst" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="Tpa-ib-bY2">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

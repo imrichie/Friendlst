@@ -52,6 +52,7 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        self.performSegue(withIdentifier: SegueNames.editFriendSegue, sender: indexPath)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -75,11 +76,10 @@ class ViewController: UITableViewController {
             controller.delegate = self
         } else if (segue.identifier == SegueNames.editFriendSegue) {
             let controller = segue.destination as! AddFriendViewController
-            controller.delegate = self
+            let path = sender as! IndexPath
             
-            if let selectedRow = tableView.indexPathForSelectedRow?.row {
-                controller.existingFriend = dataManager.friendsList[selectedRow]
-            }
+            controller.delegate = self
+            controller.existingFriend = dataManager.friendsList[path.row]
         }
     }
 }
@@ -90,6 +90,13 @@ extension ViewController: AddFriendViewControllerDelegate {
         dataManager.addFriend(newFriend: friend)
         tableView.insertRows(at: [IndexPath(row: newRowIndex, section: 0)], with: .fade)
         
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func addFriendViewController(_ controller: AddFriendViewController, didFinishedEditingFriend currentFriend: Friend) {
+        guard let currentFriendIndex = dataManager.friendsList.firstIndex(of: currentFriend) else { return }
+        dataManager.friendsList[currentFriendIndex] = currentFriend
+        tableView.reloadRows(at: [IndexPath(row: currentFriendIndex, section: 0)], with: .fade)
         navigationController?.popViewController(animated: true)
     }
 }

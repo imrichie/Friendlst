@@ -16,3 +16,8 @@ struct SegueNames {
     static let addFriendSegue = "AddFriendSeque"
     static let editFriendSegue = "EditFriendSegue"
 }
+
+struct ControllerNames {
+    static let mainViewController = "ViewController"
+    static let addFriendViewController = "AddFriendViewController"
+}

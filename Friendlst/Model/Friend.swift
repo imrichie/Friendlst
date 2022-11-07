@@ -7,7 +7,8 @@
 
 import Foundation
 
-class Friend {
+class Friend: NSObject {
+    
     var firstName = String()
     var lastName = String()
     var location = String()

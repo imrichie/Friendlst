@@ -9,6 +9,7 @@ import UIKit
 
 protocol AddFriendViewControllerDelegate: AnyObject {
     func addFriendViewController(_ controller: AddFriendViewController, didFinishAddingFriend friend: Friend)
+    func addFriendViewController(_ controller: AddFriendViewController, didFinishedEditingFriend currentFriend: Friend)
 }
 
 class AddFriendViewController: UITableViewController {
@@ -48,13 +49,17 @@ class AddFriendViewController: UITableViewController {
         guard cityText.isValid() else { presentAlertController(entry: "City"); return }
         guard stateText.isValid() else { presentAlertController(entry: "State"); return }
         
-        let newFriend: Friend = Friend()
-        newFriend.firstName = firstNameText.text!
-        newFriend.lastName = lastNameText.text!
-        newFriend.location = "\(cityText.text!), \(stateText.text!)"
-        
-        if let delegate = delegate {
-            delegate.addFriendViewController(self, didFinishAddingFriend: newFriend)
+        if let existingFriend = existingFriend {
+            existingFriend.firstName = firstNameText.text!
+            existingFriend.lastName = lastNameText.text!
+            existingFriend.location = "\(cityText.text!), \(stateText.text!)"
+            delegate?.addFriendViewController(self, didFinishedEditingFriend: existingFriend)
+        } else {
+            let newFriend: Friend = Friend()
+            newFriend.firstName = firstNameText.text!
+            newFriend.lastName = lastNameText.text!
+            newFriend.location = "\(cityText.text!), \(stateText.text!)"
+            delegate?.addFriendViewController(self, didFinishAddingFriend: newFriend)
         }
     }
 
@@ -71,10 +76,6 @@ class AddFriendViewController: UITableViewController {
     }
     
     // MARK: - Private Functions
-    func isTextFieldEntriesValid() -> Bool {
-        return true
-    }
-    
     func presentAlertController(entry: String) {
         let alert = UIAlertController(title: "Oops", message: "\(entry) is a required field", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
