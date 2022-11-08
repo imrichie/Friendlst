@@ -13,8 +13,9 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataManager.loadSampleFriendData()
+        dataManager.loadFriend()
         configureNavbar()
+        print(">>> Documents Directory: \(Persistance.getDocumentsDirectory())")
     }
     
     // MARK: - Helper Functions
@@ -33,7 +34,7 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellNames.defaultCell)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellNames.defaultCell)
         let person = dataManager.friendsList[indexPath.row]
         
         var content = cell?.defaultContentConfiguration()
@@ -52,7 +53,7 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        self.performSegue(withIdentifier: SegueNames.editFriendSegue, sender: indexPath)
+        self.performSegue(withIdentifier: Constants.SegueNames.editFriendSegue, sender: indexPath)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -63,6 +64,7 @@ class ViewController: UITableViewController {
         let deleteSwipeAction = UIContextualAction(style: .destructive, title: "Remove", handler: {action, view, _ in
             self.dataManager.friendsList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.dataManager.saveFriend()
             return
         })
         
@@ -71,10 +73,10 @@ class ViewController: UITableViewController {
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == SegueNames.addFriendSegue {
+        if segue.identifier == Constants.SegueNames.addFriendSegue {
             let controller = segue.destination as! AddFriendViewController
             controller.delegate = self
-        } else if (segue.identifier == SegueNames.editFriendSegue) {
+        } else if (segue.identifier == Constants.SegueNames.editFriendSegue) {
             let controller = segue.destination as! AddFriendViewController
             let path = sender as! IndexPath
             
@@ -89,6 +91,7 @@ extension ViewController: AddFriendViewControllerDelegate {
         let newRowIndex = dataManager.friendsList.count
         dataManager.addFriend(newFriend: friend)
         tableView.insertRows(at: [IndexPath(row: newRowIndex, section: 0)], with: .fade)
+        dataManager.saveFriend()
         
         navigationController?.popViewController(animated: true)
     }
@@ -97,6 +100,8 @@ extension ViewController: AddFriendViewControllerDelegate {
         guard let currentFriendIndex = dataManager.friendsList.firstIndex(of: currentFriend) else { return }
         dataManager.friendsList[currentFriendIndex] = currentFriend
         tableView.reloadRows(at: [IndexPath(row: currentFriendIndex, section: 0)], with: .fade)
+        dataManager.saveFriend()
+        
         navigationController?.popViewController(animated: true)
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Friend: NSObject {
+class Friend: NSObject, Codable {
     
     var firstName = String()
     var lastName = String()
