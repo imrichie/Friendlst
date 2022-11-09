@@ -21,10 +21,11 @@ class AddFriendViewController: UITableViewController {
     @IBOutlet weak var commentsTextView: UITextView!
     
     weak var delegate: AddFriendViewControllerDelegate?
-    weak var existingFriend: Friend? 
+    weak var existingFriend: Friend?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        stateText.delegate = self
         
         if let friendToEdit = existingFriend {
             self.title = "Edit Friend"
@@ -90,7 +91,16 @@ class AddFriendViewController: UITableViewController {
 extension UITextField {
     func isValid() -> Bool {
         guard let text = text, !text.isEmpty else { return false }
-        
         return true
+    }
+}
+
+extension AddFriendViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let maxLength = 2
+        let currentString = (textField.text ?? "") as NSString
+        let newString = currentString.replacingCharacters(in: range, with: string)
+        
+        return newString.count <= maxLength
     }
 }
