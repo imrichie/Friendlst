@@ -6,15 +6,19 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UITableViewController {
     let dataManager = DataManager()
+    var managedObjectContext: NSManagedObjectContext?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        dataManager.loadFriend()
         configureNavbar()
+        
+        if let _ = managedObjectContext {
+            print(">>> SUCCESS PASSED THE OBJECT CONTEXT")
+        }
         print(">>> Documents Directory: \(Persistance.getDocumentsDirectory())")
     }
     
@@ -75,19 +79,22 @@ class ViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.SegueNames.addFriendSegue {
             let controller = segue.destination as! AddFriendViewController
+            
             controller.delegate = self
+            controller.managedObjectContext = managedObjectContext
         } else if (segue.identifier == Constants.SegueNames.editFriendSegue) {
             let controller = segue.destination as! AddFriendViewController
             let path = sender as! IndexPath
             
             controller.delegate = self
+            controller.managedObjectContext = managedObjectContext
             controller.existingFriend = dataManager.friendsList[path.row]
         }
     }
 }
 
 extension ViewController: AddFriendViewControllerDelegate {
-    func addFriendViewController(_ controller: AddFriendViewController, didFinishAddingFriend friend: Friend) {
+    func addFriendViewController(_ controller: AddFriendViewController, didFinishAddingFriend friend: Friends) {
         let newRowIndex = dataManager.friendsList.count
         dataManager.addFriend(newFriend: friend)
         tableView.insertRows(at: [IndexPath(row: newRowIndex, section: 0)], with: .fade)
@@ -96,7 +103,7 @@ extension ViewController: AddFriendViewControllerDelegate {
         navigationController?.popViewController(animated: true)
     }
     
-    func addFriendViewController(_ controller: AddFriendViewController, didFinishedEditingFriend currentFriend: Friend) {
+    func addFriendViewController(_ controller: AddFriendViewController, didFinishedEditingFriend currentFriend: Friends) {
         guard let currentFriendIndex = dataManager.friendsList.firstIndex(of: currentFriend) else { return }
         dataManager.friendsList[currentFriendIndex] = currentFriend
         tableView.reloadRows(at: [IndexPath(row: currentFriendIndex, section: 0)], with: .fade)

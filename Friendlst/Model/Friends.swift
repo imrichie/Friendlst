@@ -7,10 +7,13 @@
 
 import Foundation
 
-class Friend: NSObject, Codable {
+class Friends: NSObject, Codable {
     
     var firstName = String()
     var lastName = String()
     var location = String()
-    var comments = String()
+    
+    var email: String?
+    var phoneNumber: String?    
+    var comments: String?
 }

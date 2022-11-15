@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import CoreData
 
 protocol AddFriendViewControllerDelegate: AnyObject {
-    func addFriendViewController(_ controller: AddFriendViewController, didFinishAddingFriend friend: Friend)
-    func addFriendViewController(_ controller: AddFriendViewController, didFinishedEditingFriend currentFriend: Friend)
+    func addFriendViewController(_ controller: AddFriendViewController, didFinishAddingFriend friend: Friends)
+    func addFriendViewController(_ controller: AddFriendViewController, didFinishedEditingFriend currentFriend: Friends)
 }
 
 class AddFriendViewController: UITableViewController {
@@ -18,14 +19,23 @@ class AddFriendViewController: UITableViewController {
     @IBOutlet weak var lastNameText: UITextField!
     @IBOutlet weak var cityText: UITextField!
     @IBOutlet weak var stateText: UITextField!
+    
+    @IBOutlet weak var emailText: UITextField!
+    @IBOutlet weak var phoneText: UITextField!
+    
     @IBOutlet weak var commentsTextView: UITextView!
     
     weak var delegate: AddFriendViewControllerDelegate?
-    weak var existingFriend: Friend?
+    weak var managedObjectContext: NSManagedObjectContext?
+    weak var existingFriend: Friends?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setTextViewDelegates()
+        
+        if let _ = managedObjectContext {
+            print(">>> SUCCESS PASSED THE OBJECT CONTEXT")
+        }
         
         if let friendToEdit = existingFriend {
             self.title = "Edit Friend"
@@ -34,6 +44,10 @@ class AddFriendViewController: UITableViewController {
             lastNameText.text = friendToEdit.lastName
             cityText.text = "\(city[0])"
             stateText.text = "\(city[1].dropFirst())"
+            
+            emailText.text = friendToEdit.email
+            phoneText.text = friendToEdit.phoneNumber
+            
             commentsTextView.text = friendToEdit.comments
         }
     }
@@ -50,20 +64,44 @@ class AddFriendViewController: UITableViewController {
         guard cityText.isValid() else { presentAlertController(entry: "City"); return }
         guard stateText.isValid() else { presentAlertController(entry: "State"); return }
         
-        if let existingFriend = existingFriend {
-            existingFriend.firstName = firstNameText.text!
-            existingFriend.lastName = lastNameText.text!
-            existingFriend.location = "\(cityText.text!), \(stateText.text!)"
-            existingFriend.comments = commentsTextView.text!
-            delegate?.addFriendViewController(self, didFinishedEditingFriend: existingFriend)
-        } else {
-            let newFriend: Friend = Friend()
-            newFriend.firstName = firstNameText.text!
-            newFriend.lastName = lastNameText.text!
-            newFriend.location = "\(cityText.text!), \(stateText.text!)"
-            newFriend.comments = commentsTextView.text!
-            delegate?.addFriendViewController(self, didFinishAddingFriend: newFriend)
+        if let context = managedObjectContext {
+            let friend = Friend(context: context)
+            friend.firstName = firstNameText.text!
+            friend.lastName = lastNameText.text!
+            friend.city = cityText.text!
+            friend.state = stateText.text!
+            friend.email = emailText.text ?? ""
+            friend.phoneNumber = phoneText.text ?? ""
+            friend.comments = commentsTextView.text ?? ""
+            
+            do {
+                try context.save()
+                navigationController?.popViewController(animated: true)
+            } catch {
+                print(">>> ERROR SAVING TO CORE DATE: \(error.localizedDescription)")
+            }
         }
+        
+//        if let existingFriend = existingFriend {
+//            existingFriend.firstName = firstNameText.text!
+//            existingFriend.lastName = lastNameText.text!
+//            existingFriend.location = "\(cityText.text!), \(stateText.text!)"
+//            existingFriend.email = emailText.text ?? ""
+//            existingFriend.phoneNumber = phoneText.text ?? ""
+//            existingFriend.comments = commentsTextView.text ?? ""
+//
+//            delegate?.addFriendViewController(self, didFinishedEditingFriend: existingFriend)
+//        } else {
+//            let newFriend: Friends = Friends()
+//            newFriend.firstName = firstNameText.text!
+//            newFriend.lastName = lastNameText.text!
+//            newFriend.location = "\(cityText.text!), \(stateText.text!)"
+//            newFriend.email = emailText.text ?? ""
+//            newFriend.phoneNumber = phoneText.text ?? ""
+//            newFriend.comments = commentsTextView.text ?? ""
+//
+//            delegate?.addFriendViewController(self, didFinishAddingFriend: newFriend)
+//        }
     }
 
     // MARK: - TableView Data Source
@@ -72,7 +110,7 @@ class AddFriendViewController: UITableViewController {
         case 0:
             return 4
         case 1:
-            return 1
+            return 2
         default:
             return 1
         }
@@ -91,6 +129,8 @@ class AddFriendViewController: UITableViewController {
         lastNameText.delegate = self
         cityText.delegate = self
         stateText.delegate = self
+        emailText.delegate = self
+        phoneText.delegate = self
     }
 }
 

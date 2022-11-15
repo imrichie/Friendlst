@@ -142,10 +142,56 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="j4e-vj-Y0H">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="emailCell" rowHeight="55" id="ih0-kU-uzt">
+                                        <rect key="frame" x="20" y="311.33333015441895" width="350" height="55"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ih0-kU-uzt" id="o9Z-og-Zlq">
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="55"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="geG-fC-X35">
+                                                    <rect key="frame" x="20" y="0.0" width="310" height="55"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="continue" textContentType="email"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="geG-fC-X35" secondAttribute="trailing" constant="20" symbolic="YES" id="9sA-FT-BUL"/>
+                                                <constraint firstItem="geG-fC-X35" firstAttribute="top" secondItem="o9Z-og-Zlq" secondAttribute="top" id="PqS-og-S0S"/>
+                                                <constraint firstItem="geG-fC-X35" firstAttribute="leading" secondItem="o9Z-og-Zlq" secondAttribute="leading" constant="20" symbolic="YES" id="boU-Gd-QbY"/>
+                                                <constraint firstAttribute="bottom" secondItem="geG-fC-X35" secondAttribute="bottom" id="t0v-Gg-tPG"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="phoneCell" rowHeight="55" id="dRQ-O4-o72">
+                                        <rect key="frame" x="20" y="366.33333015441895" width="350" height="55"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dRQ-O4-o72" id="h91-PV-Xse">
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="55"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone" textAlignment="natural" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="6w2-Ur-NL4">
+                                                    <rect key="frame" x="20" y="0.0" width="310" height="55"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="continue" textContentType="tel"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="6w2-Ur-NL4" secondAttribute="bottom" id="7ce-1S-1lo"/>
+                                                <constraint firstAttribute="trailing" secondItem="6w2-Ur-NL4" secondAttribute="trailing" constant="20" symbolic="YES" id="Q5X-Fm-ri8"/>
+                                                <constraint firstItem="6w2-Ur-NL4" firstAttribute="leading" secondItem="h91-PV-Xse" secondAttribute="leading" constant="20" symbolic="YES" id="phm-u8-2cl"/>
+                                                <constraint firstItem="6w2-Ur-NL4" firstAttribute="top" secondItem="h91-PV-Xse" secondAttribute="top" id="znC-3F-NlL"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Comments" id="4qE-CV-b3i">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommentsCell" rowHeight="154" id="Mt8-GK-2fL">
-                                        <rect key="frame" x="20" y="331.33333015441895" width="350" height="154"/>
+                                        <rect key="frame" x="20" y="477.33333015441895" width="350" height="154"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mt8-GK-2fL" id="qCg-fJ-JMr">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="154"/>
@@ -185,14 +231,16 @@
                     <connections>
                         <outlet property="cityText" destination="RVn-gk-Hxx" id="V9u-fR-nXC"/>
                         <outlet property="commentsTextView" destination="QGP-wO-o3x" id="y9r-Gl-cX3"/>
+                        <outlet property="emailText" destination="geG-fC-X35" id="9sG-Ku-Y2f"/>
                         <outlet property="firstNameText" destination="0u0-kB-n6u" id="6j0-TA-aoF"/>
                         <outlet property="lastNameText" destination="TKO-s0-dXg" id="ohn-0h-OZn"/>
+                        <outlet property="phoneText" destination="6w2-Ur-NL4" id="qkf-cb-0KN"/>
                         <outlet property="stateText" destination="fLA-43-Cht" id="RkH-Bp-bsm"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vVm-6z-AqE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2105" y="-149"/>
+            <point key="canvasLocation" x="2104.6153846153848" y="-149.28909952606634"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ita-a0-fYB">
