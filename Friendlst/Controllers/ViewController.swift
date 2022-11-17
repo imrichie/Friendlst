@@ -9,16 +9,26 @@ import UIKit
 import CoreData
 
 class ViewController: UITableViewController {
-    let dataManager = DataManager()
+    var managedObjectContext: NSManagedObjectContext? 
+    var listOfFriends: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavbar()
+        configureNavbar()        
         
-        print(">>> Documents Directory: \(Persistance.getDocumentsDirectory())")
-        if (dataManager.managedObjectContext != nil) {
-            print(">>> SUCCESS Context is alive")
+        if let _ = managedObjectContext {
+            print(">>> SUCCESS - Passed Context to Main ViewController")
         }
+        
+        // load dummy data
+        let name1: String = "Alisa"
+        let name2: String = "Alex"
+        let name3: String = "Jacob"
+        
+        listOfFriends.append(name1)
+        listOfFriends.append(name2)
+        listOfFriends.append(name3)
+        
     }
     
     // MARK: - Helper Functions
@@ -33,24 +43,26 @@ class ViewController: UITableViewController {
     
     // MARK: - TableView Delegates
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataManager.listOfFriends.count
+        if listOfFriends.count > 0 {
+            return listOfFriends.count
+        } else {
+            return 1
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellNames.defaultCell)
-        let person = dataManager.listOfFriends[indexPath.row]
-        
-        var content = cell?.defaultContentConfiguration()
-        content?.text = "\(person.value(forKey: "lastName")!), \(person.value(forKey: "firstName")!)"
-        content?.textProperties.font = .systemFont(ofSize: 17.0)
-        content?.secondaryTextProperties.font = .systemFont(ofSize: 13.0)
-        content?.secondaryTextProperties.color = .black.withAlphaComponent(0.65)
-        content?.image = UIImage(systemName: "person.crop.circle")
-        
-        cell?.contentConfiguration = content
-        cell?.accessoryType = .disclosureIndicator
-        
-        return cell!
+        if listOfFriends.count > 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "testCell", for: indexPath)
+            cell.accessoryType = .disclosureIndicator
+            cell.textLabel?.text = listOfFriends[indexPath.row]
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "emptyCell", for: indexPath)
+            cell.textLabel?.text = "Cell is empty. Please Add Data"
+            
+            return cell
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -64,9 +76,8 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteSwipeAction = UIContextualAction(style: .destructive, title: "Remove", handler: {action, view, _ in
-            self.dataManager.listOfFriends.remove(at: indexPath.row)
+            self.listOfFriends.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            self.dataManager.saveFriend()
             return
         })
         
@@ -77,35 +88,32 @@ class ViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.SegueNames.addFriendSegue {
             let controller = segue.destination as! AddFriendViewController
+            controller.managedObjectContext = managedObjectContext
             
-            controller.delegate = self
-            controller.managedObjectContext = dataManager.managedObjectContext
         } else if (segue.identifier == Constants.SegueNames.editFriendSegue) {
             let controller = segue.destination as! AddFriendViewController
             let path = sender as! IndexPath
-            
-            controller.delegate = self
-            controller.managedObjectContext = dataManager.managedObjectContext
+            controller.managedObjectContext = managedObjectContext
         }
     }
 }
 
-extension ViewController: AddFriendViewControllerDelegate {
-    func addFriendViewController(_ controller: AddFriendViewController, didFinishAddingFriend friend: NSManagedObject) {
-        let newRowIndex = dataManager.listOfFriends.count
-        dataManager.addFriend(newFriend: friend)
-        tableView.insertRows(at: [IndexPath(row: newRowIndex, section: 0)], with: .fade)
-        dataManager.saveFriend()
-        
-        navigationController?.popViewController(animated: true)
-    }
-    
-    func addFriendViewController(_ controller: AddFriendViewController, didFinishedEditingFriend currentFriend: NSManagedObject) {
-        guard let currentFriendIndex = dataManager.listOfFriends.firstIndex(of: currentFriend) else { return }
-        dataManager.listOfFriends[currentFriendIndex] = currentFriend
-        tableView.reloadRows(at: [IndexPath(row: currentFriendIndex, section: 0)], with: .fade)
-        dataManager.saveFriend()
-        
-        navigationController?.popViewController(animated: true)
-    }
-}
+//extension ViewController: AddFriendViewControllerDelegate {
+//    func addFriendViewController(_ controller: AddFriendViewController, didFinishAddingFriend friend: NSManagedObject) {
+//        let newRowIndex = dataManager.listOfFriends.count
+//        dataManager.addFriend(newFriend: friend)
+//        tableView.insertRows(at: [IndexPath(row: newRowIndex, section: 0)], with: .fade)
+//        dataManager.saveFriend()
+//
+//        navigationController?.popViewController(animated: true)
+//    }
+//
+//    func addFriendViewController(_ controller: AddFriendViewController, didFinishedEditingFriend currentFriend: NSManagedObject) {
+//        guard let currentFriendIndex = dataManager.listOfFriends.firstIndex(of: currentFriend) else { return }
+//        dataManager.listOfFriends[currentFriendIndex] = currentFriend
+//        tableView.reloadRows(at: [IndexPath(row: currentFriendIndex, section: 0)], with: .fade)
+//        dataManager.saveFriend()
+//
+//        navigationController?.popViewController(animated: true)
+//    }
+//}

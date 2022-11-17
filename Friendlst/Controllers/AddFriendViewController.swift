@@ -33,7 +33,7 @@ class AddFriendViewController: UITableViewController {
         setTextViewDelegates()
         
         if let _ = managedObjectContext {
-            print(">>> SUCCESS PASSED THE OBJECT CONTEXT")
+            print(">>> SUCCESS - Passed Context to Detail ViewController")
         }
     }
     
@@ -49,22 +49,20 @@ class AddFriendViewController: UITableViewController {
         guard cityText.isValid() else { presentAlertController(entry: "City"); return }
         guard stateText.isValid() else { presentAlertController(entry: "State"); return }
         
-        if let context = managedObjectContext {
-            let friend = Friend(context: context)
-            friend.firstName = firstNameText.text!
-            friend.lastName = lastNameText.text!
-            friend.city = cityText.text!
-            friend.state = stateText.text!
-            friend.email = emailText.text ?? ""
-            friend.phoneNumber = phoneText.text ?? ""
-            friend.comments = commentsTextView.text ?? ""
-            
-            do {
-                try context.save()
-                delegate?.addFriendViewController(self, didFinishAddingFriend: friend)
-            } catch {
-                print(">>> ERROR SAVING TO CORE DATE: \(error.localizedDescription)")
-            }
+        let friend = Friend(context: managedObjectContext!)
+        friend.firstName = firstNameText.text!
+        friend.lastName = lastNameText.text!
+        friend.city = cityText.text!
+        friend.state = stateText.text!
+        friend.email = emailText.text ?? ""
+        friend.phoneNumber = phoneText.text ?? ""
+        friend.comments = commentsTextView.text ?? ""
+        
+        do {
+            try managedObjectContext!.save()
+            navigationController?.popViewController(animated: true)
+        } catch {
+            fatalError(">>> ERROR Saving data to Core Data: \(error.localizedDescription)")
         }
     }
 
