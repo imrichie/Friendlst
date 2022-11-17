@@ -9,16 +9,14 @@ import UIKit
 import CoreData 
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    
-    var window: UIWindow?
+    // MARK: - Instance Properties
     lazy var managedObjectContext = persistentContainer.viewContext
+    var window: UIWindow?
+    let dataManager = DataManager()
     
+    // MARK: - Delegate Methods
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        if let window = window {
-            let navController = window.rootViewController as! UINavigationController
-            let mainViewController = navController.viewControllers.first as! ViewController
-            mainViewController.managedObjectContext = managedObjectContext
-        }
+        dataManager.managedObjectContext = managedObjectContext
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
