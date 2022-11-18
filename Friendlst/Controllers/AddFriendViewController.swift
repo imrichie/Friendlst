@@ -25,6 +25,7 @@ class AddFriendViewController: UITableViewController {
     
     @IBOutlet weak var commentsTextView: UITextView!
     
+    weak var existingFriend: NSManagedObject?
     weak var delegate: AddFriendViewControllerDelegate?
     weak var managedObjectContext: NSManagedObjectContext?
     
@@ -32,8 +33,17 @@ class AddFriendViewController: UITableViewController {
         super.viewDidLoad()
         setTextViewDelegates()
         
-        if let _ = managedObjectContext {
-            print(">>> SUCCESS - Passed Context to Detail ViewController")
+        if let friendToEdit = existingFriend {
+            self.title = "Edit Friend"
+            firstNameText.text = friendToEdit.value(forKey: "firstName") as? String
+            lastNameText.text = friendToEdit.value(forKey: "lastName") as? String
+            cityText.text = friendToEdit.value(forKey: "city") as? String
+            stateText.text = friendToEdit.value(forKey: "state") as? String
+            emailText.text = friendToEdit.value(forKey: "email") as? String
+            phoneText.text = friendToEdit.value(forKey: "phoneNumber") as? String
+            commentsTextView.text = friendToEdit.value(forKey: "comments") as? String
+        } else {
+            print(">>> ERROR: No existing Friend")
         }
     }
     
@@ -60,7 +70,7 @@ class AddFriendViewController: UITableViewController {
         
         do {
             try managedObjectContext!.save()
-            navigationController?.popViewController(animated: true)
+            delegate?.addFriendViewController(self, didFinishAddingFriend: friend)
         } catch {
             fatalError(">>> ERROR Saving data to Core Data: \(error.localizedDescription)")
         }
@@ -93,6 +103,10 @@ class AddFriendViewController: UITableViewController {
         stateText.delegate = self
         emailText.delegate = self
         phoneText.delegate = self
+    }
+    
+    func saveFriend() {
+        
     }
 }
 

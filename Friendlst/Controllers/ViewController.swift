@@ -10,25 +10,23 @@ import CoreData
 
 class ViewController: UITableViewController {
     var managedObjectContext: NSManagedObjectContext? 
-    var listOfFriends: [String] = []
+    var listOfFriends: [NSManagedObject] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavbar()        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        if let _ = managedObjectContext {
-            print(">>> SUCCESS - Passed Context to Main ViewController")
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Constants.CoreDataNames.entityName)
+        
+        do {
+            listOfFriends = try managedObjectContext!.fetch(fetchRequest)
+        } catch {
+            fatalError(">>> ERROR Loading from Core Data \(error.localizedDescription)")
         }
-        
-        // load dummy data
-        let name1: String = "Alisa"
-        let name2: String = "Alex"
-        let name3: String = "Jacob"
-        
-        listOfFriends.append(name1)
-        listOfFriends.append(name2)
-        listOfFriends.append(name3)
-        
     }
     
     // MARK: - Helper Functions
@@ -43,26 +41,25 @@ class ViewController: UITableViewController {
     
     // MARK: - TableView Delegates
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if listOfFriends.count > 0 {
-            return listOfFriends.count
-        } else {
-            return 1
-        }
+        return listOfFriends.count == 0 ? 1 : listOfFriends.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if listOfFriends.count > 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "testCell", for: indexPath)
-            cell.accessoryType = .disclosureIndicator
-            cell.textLabel?.text = listOfFriends[indexPath.row]
-            
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "emptyCell", for: indexPath)
-            cell.textLabel?.text = "Cell is empty. Please Add Data"
-            
-            return cell
-        }
+        let friend = listOfFriends[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellNames.friendCell, for: indexPath)
+        
+        var content = cell.defaultContentConfiguration()
+        content.text = friend.value(forKey: "firstName") as? String
+        content.textProperties.font = .systemFont(ofSize: 17.0)
+        content.secondaryText = "\(friend.value(forKey: "city") as! String), \(friend.value(forKey: "state") as! String)"
+        content.secondaryTextProperties.font = .systemFont(ofSize: 13.0)
+        content.secondaryTextProperties.color = .black.withAlphaComponent(0.65)
+        content.image = UIImage(systemName: "person.crop.circle")
+        
+        cell.contentConfiguration = content
+        cell.accessoryType = .disclosureIndicator
+        
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -88,32 +85,34 @@ class ViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.SegueNames.addFriendSegue {
             let controller = segue.destination as! AddFriendViewController
+            controller.delegate = self
             controller.managedObjectContext = managedObjectContext
             
         } else if (segue.identifier == Constants.SegueNames.editFriendSegue) {
             let controller = segue.destination as! AddFriendViewController
             let path = sender as! IndexPath
+            
+            controller.delegate = self
             controller.managedObjectContext = managedObjectContext
+            controller.existingFriend = listOfFriends[path.row]
         }
     }
 }
 
-//extension ViewController: AddFriendViewControllerDelegate {
-//    func addFriendViewController(_ controller: AddFriendViewController, didFinishAddingFriend friend: NSManagedObject) {
-//        let newRowIndex = dataManager.listOfFriends.count
-//        dataManager.addFriend(newFriend: friend)
-//        tableView.insertRows(at: [IndexPath(row: newRowIndex, section: 0)], with: .fade)
-//        dataManager.saveFriend()
-//
-//        navigationController?.popViewController(animated: true)
-//    }
-//
-//    func addFriendViewController(_ controller: AddFriendViewController, didFinishedEditingFriend currentFriend: NSManagedObject) {
-//        guard let currentFriendIndex = dataManager.listOfFriends.firstIndex(of: currentFriend) else { return }
-//        dataManager.listOfFriends[currentFriendIndex] = currentFriend
-//        tableView.reloadRows(at: [IndexPath(row: currentFriendIndex, section: 0)], with: .fade)
-//        dataManager.saveFriend()
-//
-//        navigationController?.popViewController(animated: true)
-//    }
-//}
+extension ViewController: AddFriendViewControllerDelegate {
+    func addFriendViewController(_ controller: AddFriendViewController, didFinishAddingFriend friend: NSManagedObject) {
+        let newRowIndex = listOfFriends.count
+        listOfFriends.append(friend)
+        tableView.insertRows(at: [IndexPath(row: newRowIndex, section: 0)], with: .fade)
+
+        navigationController?.popViewController(animated: true)
+    }
+
+    func addFriendViewController(_ controller: AddFriendViewController, didFinishedEditingFriend currentFriend: NSManagedObject) {
+        guard let currentFriendIndex = listOfFriends.firstIndex(of: currentFriend) else { return }
+        listOfFriends[currentFriendIndex] = currentFriend
+        tableView.reloadRows(at: [IndexPath(row: currentFriendIndex, section: 0)], with: .fade)
+
+        navigationController?.popViewController(animated: true)
+    }
+}

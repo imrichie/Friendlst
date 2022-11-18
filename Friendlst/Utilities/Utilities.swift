@@ -10,7 +10,7 @@ import Foundation
 struct Constants {
     struct CellNames {
         static let friendCell = "FriendCell"
-        static let defaultCell = "ListCell"
+        static let emptyCell = "EmptyCell"
     }
     
     struct SegueNames {
@@ -21,6 +21,11 @@ struct Constants {
     struct ControllerNames {
         static let mainViewController = "ViewController"
         static let addFriendViewController = "AddFriendViewController"
+    }
+    
+    struct CoreDataNames {
+        static let dataModel = "Friendlst"
+        static let entityName = "Friend"
     }
 }
 
