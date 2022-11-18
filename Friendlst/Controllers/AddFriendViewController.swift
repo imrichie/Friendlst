@@ -19,15 +19,13 @@ class AddFriendViewController: UITableViewController {
     @IBOutlet weak var lastNameText: UITextField!
     @IBOutlet weak var cityText: UITextField!
     @IBOutlet weak var stateText: UITextField!
-    
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var phoneText: UITextField!
-    
     @IBOutlet weak var commentsTextView: UITextView!
     
-    weak var existingFriend: NSManagedObject?
-    weak var delegate: AddFriendViewControllerDelegate?
     weak var managedObjectContext: NSManagedObjectContext?
+    weak var delegate: AddFriendViewControllerDelegate?
+    weak var existingFriend: NSManagedObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +40,6 @@ class AddFriendViewController: UITableViewController {
             emailText.text = friendToEdit.value(forKey: "email") as? String
             phoneText.text = friendToEdit.value(forKey: "phoneNumber") as? String
             commentsTextView.text = friendToEdit.value(forKey: "comments") as? String
-        } else {
-            print(">>> ERROR: No existing Friend")
         }
     }
     
@@ -59,20 +55,38 @@ class AddFriendViewController: UITableViewController {
         guard cityText.isValid() else { presentAlertController(entry: "City"); return }
         guard stateText.isValid() else { presentAlertController(entry: "State"); return }
         
-        let friend = Friend(context: managedObjectContext!)
-        friend.firstName = firstNameText.text!
-        friend.lastName = lastNameText.text!
-        friend.city = cityText.text!
-        friend.state = stateText.text!
-        friend.email = emailText.text ?? ""
-        friend.phoneNumber = phoneText.text ?? ""
-        friend.comments = commentsTextView.text ?? ""
-        
-        do {
-            try managedObjectContext!.save()
-            delegate?.addFriendViewController(self, didFinishAddingFriend: friend)
-        } catch {
-            fatalError(">>> ERROR Saving data to Core Data: \(error.localizedDescription)")
+        if let existingFriend = existingFriend {
+            existingFriend.setValue(firstNameText.text, forKey: "firstName")
+            existingFriend.setValue(lastNameText.text, forKey: "lastName")
+            existingFriend.setValue(cityText.text, forKey: "city")
+            existingFriend.setValue(stateText.text, forKey: "state")
+            existingFriend.setValue(emailText.text, forKey: "email")
+            existingFriend.setValue(phoneText.text, forKey: "phoneNumber")
+            existingFriend.setValue(commentsTextView.text, forKey: "comments")
+            
+            do {
+                try managedObjectContext!.save()
+                delegate?.addFriendViewController(self, didFinishedEditingFriend: existingFriend)
+            } catch {
+                fatalError(">>> ERROR editing existing friend")
+            }
+            
+        } else {
+            let friend = Friend(context: managedObjectContext!)
+            friend.firstName = firstNameText.text!
+            friend.lastName = lastNameText.text!
+            friend.city = cityText.text!
+            friend.state = stateText.text!
+            friend.email = emailText.text ?? ""
+            friend.phoneNumber = phoneText.text ?? ""
+            friend.comments = commentsTextView.text ?? ""
+            
+            do {
+                try managedObjectContext!.save()
+                delegate?.addFriendViewController(self, didFinishAddingFriend: friend)
+            } catch {
+                fatalError(">>> ERROR Saving data to Core Data: \(error.localizedDescription)")
+            }
         }
     }
 
