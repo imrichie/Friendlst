@@ -11,6 +11,7 @@ import CoreData
 class ViewController: UITableViewController {
     var managedObjectContext: NSManagedObjectContext? 
     var listOfFriends: [NSManagedObject] = []
+    var otherList: [Friend] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,15 @@ class ViewController: UITableViewController {
             listOfFriends = try managedObjectContext!.fetch(fetchRequest)
         } catch {
             fatalError(">>> ERROR Loading from Core Data \(error.localizedDescription)")
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.delegate = self
+        let index = UserDefaults.standard.integer(forKey: "FriendIndex")
+        if index != -1 {
+            let friend = listOfFriends[index]
+            performSegue(withIdentifier: Constants.SegueNames.editFriendSegue, sender: friend)
         }
     }
     
@@ -49,7 +59,7 @@ class ViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellNames.friendCell, for: indexPath)
         
         var content = cell.defaultContentConfiguration()
-        content.text = friend.value(forKey: "firstName") as? String
+        content.text = "\(friend.value(forKey: "lastName") as! String), \(friend.value(forKey: "firstName") as! String)"
         content.textProperties.font = .systemFont(ofSize: 17.0)
         content.secondaryText = "\(friend.value(forKey: "city") as! String), \(friend.value(forKey: "state") as! String)"
         content.secondaryTextProperties.font = .systemFont(ofSize: 13.0)
@@ -64,7 +74,9 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        self.performSegue(withIdentifier: Constants.SegueNames.editFriendSegue, sender: indexPath)
+        let selectedFriend = listOfFriends[indexPath.row]
+        self.performSegue(withIdentifier: Constants.SegueNames.editFriendSegue, sender: selectedFriend)
+        UserDefaults.standard.set(indexPath.row, forKey: "FriendIndex")
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -90,11 +102,9 @@ class ViewController: UITableViewController {
             
         } else if (segue.identifier == Constants.SegueNames.editFriendSegue) {
             let controller = segue.destination as! AddFriendViewController
-            let path = sender as! IndexPath
-            
             controller.delegate = self
             controller.managedObjectContext = managedObjectContext
-            controller.existingFriend = listOfFriends[path.row]
+            controller.existingFriend = sender as? NSManagedObject
         }
     }
 }
@@ -114,5 +124,13 @@ extension ViewController: AddFriendViewControllerDelegate {
         tableView.reloadRows(at: [IndexPath(row: currentFriendIndex, section: 0)], with: .fade)
 
         navigationController?.popViewController(animated: true)
+    }
+}
+
+extension ViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if viewController == self {
+            UserDefaults.standard.set(-1, forKey: "FriendIndex")
+        }
     }
 }

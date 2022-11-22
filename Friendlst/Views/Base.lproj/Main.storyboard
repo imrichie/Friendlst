@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uyh-by-Cxf">
-    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <device id="retina6_0" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -15,19 +15,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="separatorColor" systemColor="systemGray3Color"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCell" id="tU9-Hr-47O">
                                 <rect key="frame" x="0.0" y="50" width="390" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tU9-Hr-47O" id="tGa-2x-uPS">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EmptyCell" id="t58-tD-Xy2">
-                                <rect key="frame" x="0.0" y="93.666667938232422" width="390" height="43.666667938232422"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="t58-tD-Xy2" id="733-I6-egX">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
@@ -51,7 +44,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DtK-Rj-aXb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1282" y="-149"/>
+            <point key="canvasLocation" x="1195" y="-149"/>
         </scene>
         <!--Add Friend-->
         <scene sceneID="LdR-uV-Qn3">
@@ -205,19 +198,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="154"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QGP-wO-o3x">
-                                                    <rect key="frame" x="28" y="19" width="294" height="116"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="j9X-bZ-BZP">
+                                                    <rect key="frame" x="20" y="11" width="310" height="132"/>
                                                     <color key="textColor" systemColor="labelColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="QGP-wO-o3x" secondAttribute="trailing" constant="8" id="2lZ-eN-5cF"/>
-                                                <constraint firstItem="QGP-wO-o3x" firstAttribute="top" secondItem="qCg-fJ-JMr" secondAttribute="topMargin" constant="8" id="Gtn-sx-Vep"/>
-                                                <constraint firstItem="QGP-wO-o3x" firstAttribute="leading" secondItem="qCg-fJ-JMr" secondAttribute="leadingMargin" constant="8" id="PSF-1m-nl5"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="QGP-wO-o3x" secondAttribute="bottom" constant="8" id="k6P-Ow-RZz"/>
+                                                <constraint firstItem="j9X-bZ-BZP" firstAttribute="top" secondItem="qCg-fJ-JMr" secondAttribute="topMargin" id="5Ou-nX-jEi"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="j9X-bZ-BZP" secondAttribute="bottom" id="RFT-Ye-gqh"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="j9X-bZ-BZP" secondAttribute="trailing" id="gjc-Qt-KNe"/>
+                                                <constraint firstItem="j9X-bZ-BZP" firstAttribute="leading" secondItem="qCg-fJ-JMr" secondAttribute="leadingMargin" id="v4Y-yo-pyC"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -238,7 +230,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cityText" destination="RVn-gk-Hxx" id="V9u-fR-nXC"/>
-                        <outlet property="commentsTextView" destination="QGP-wO-o3x" id="y9r-Gl-cX3"/>
+                        <outlet property="commentsText" destination="j9X-bZ-BZP" id="8uB-l3-JuU"/>
                         <outlet property="emailText" destination="geG-fC-X35" id="9sG-Ku-Y2f"/>
                         <outlet property="firstNameText" destination="0u0-kB-n6u" id="6j0-TA-aoF"/>
                         <outlet property="lastNameText" destination="TKO-s0-dXg" id="ohn-0h-OZn"/>
@@ -248,7 +240,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vVm-6z-AqE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2104.6153846153848" y="-149.28909952606634"/>
+            <point key="canvasLocation" x="1938" y="-149"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ita-a0-fYB">
@@ -282,6 +274,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

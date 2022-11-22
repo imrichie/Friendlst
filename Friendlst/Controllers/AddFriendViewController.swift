@@ -21,7 +21,7 @@ class AddFriendViewController: UITableViewController {
     @IBOutlet weak var stateText: UITextField!
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var phoneText: UITextField!
-    @IBOutlet weak var commentsTextView: UITextView!
+    @IBOutlet weak var commentsText: UITextView!
     
     weak var managedObjectContext: NSManagedObjectContext?
     weak var delegate: AddFriendViewControllerDelegate?
@@ -39,7 +39,7 @@ class AddFriendViewController: UITableViewController {
             stateText.text = friendToEdit.value(forKey: "state") as? String
             emailText.text = friendToEdit.value(forKey: "email") as? String
             phoneText.text = friendToEdit.value(forKey: "phoneNumber") as? String
-            commentsTextView.text = friendToEdit.value(forKey: "comments") as? String
+            commentsText.text = friendToEdit.value(forKey: "comments") as? String
         }
     }
     
@@ -62,7 +62,7 @@ class AddFriendViewController: UITableViewController {
             existingFriend.setValue(stateText.text, forKey: "state")
             existingFriend.setValue(emailText.text, forKey: "email")
             existingFriend.setValue(phoneText.text, forKey: "phoneNumber")
-            existingFriend.setValue(commentsTextView.text, forKey: "comments")
+            existingFriend.setValue(commentsText.text, forKey: "comments")
             
             do {
                 try managedObjectContext!.save()
@@ -79,7 +79,7 @@ class AddFriendViewController: UITableViewController {
             friend.state = stateText.text!
             friend.email = emailText.text ?? ""
             friend.phoneNumber = phoneText.text ?? ""
-            friend.comments = commentsTextView.text ?? ""
+            friend.comments = commentsText.text ?? ""
             
             do {
                 try managedObjectContext!.save()
@@ -162,9 +162,9 @@ extension AddFriendViewController: UITextFieldDelegate {
         case cityText:
             stateText.becomeFirstResponder()
         case stateText:
-            commentsTextView.becomeFirstResponder()
+            commentsText.becomeFirstResponder()
         default:
-            commentsTextView.becomeFirstResponder()
+            commentsText.becomeFirstResponder()
         }
         return true
     }
