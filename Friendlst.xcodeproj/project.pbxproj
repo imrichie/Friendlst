@@ -36,6 +36,7 @@
 		13B6C05E28F8C49F0065CE4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13B6C06828F9051D0065CE4E /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		13CB81672910E3C500D77B73 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
+		13E30C22292DB14D001A90AC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +53,7 @@
 		13B6C04128F8C49D0065CE4E = {
 			isa = PBXGroup;
 			children = (
+				13E30C22292DB14D001A90AC /* README.md */,
 				13B6C04C28F8C49D0065CE4E /* Friendlst */,
 				13B6C04B28F8C49D0065CE4E /* Products */,
 			);

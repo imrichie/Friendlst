@@ -11,7 +11,6 @@ import CoreData
 class ViewController: UITableViewController {
     var managedObjectContext: NSManagedObjectContext? 
     var listOfFriends: [NSManagedObject] = []
-    var otherList: [Friend] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
