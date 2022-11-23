@@ -62,7 +62,7 @@ class ViewController: UITableViewController {
         content.textProperties.font = .systemFont(ofSize: 17.0)
         content.secondaryText = "\(friend.value(forKey: "city") as! String), \(friend.value(forKey: "state") as! String)"
         content.secondaryTextProperties.font = .systemFont(ofSize: 13.0)
-        content.secondaryTextProperties.color = .black.withAlphaComponent(0.65)
+        content.secondaryTextProperties.color = .secondaryLabel
         content.image = UIImage(systemName: "person.crop.circle")
         
         cell.contentConfiguration = content
