@@ -19,6 +19,8 @@
 		13B6C05D28F8C49F0065CE4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13B6C05B28F8C49F0065CE4E /* LaunchScreen.storyboard */; };
 		13B6C06928F9051D0065CE4E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B6C06828F9051D0065CE4E /* Utilities.swift */; };
 		13CB81682910E3C600D77B73 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CB81672910E3C500D77B73 /* AddFriendViewController.swift */; };
+		13E30C25292DF671001A90AC /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E30C23292DF671001A90AC /* CustomTableViewCell.swift */; };
+		13E30C26292DF671001A90AC /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13E30C24292DF671001A90AC /* CustomTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		13B6C06828F9051D0065CE4E /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		13CB81672910E3C500D77B73 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		13E30C22292DB14D001A90AC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		13E30C23292DF671001A90AC /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		13E30C24292DF671001A90AC /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,7 @@
 			children = (
 				13B6C05128F8C49D0065CE4E /* ViewController.swift */,
 				13CB81672910E3C500D77B73 /* AddFriendViewController.swift */,
+				13E30C23292DF671001A90AC /* CustomTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 			children = (
 				13B6C05328F8C49D0065CE4E /* Main.storyboard */,
 				13B6C05B28F8C49F0065CE4E /* LaunchScreen.storyboard */,
+				13E30C24292DF671001A90AC /* CustomTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -179,6 +185,7 @@
 			files = (
 				13B6C05D28F8C49F0065CE4E /* LaunchScreen.storyboard in Resources */,
 				13B6C05A28F8C49F0065CE4E /* Assets.xcassets in Resources */,
+				13E30C26292DF671001A90AC /* CustomTableViewCell.xib in Resources */,
 				13B6C05528F8C49D0065CE4E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -196,6 +203,7 @@
 				13B6C05828F8C49D0065CE4E /* Friendlst.xcdatamodeld in Sources */,
 				13B6C04E28F8C49D0065CE4E /* AppDelegate.swift in Sources */,
 				130B9C9729233D1100FC034D /* Friend+CoreDataProperties.swift in Sources */,
+				13E30C25292DF671001A90AC /* CustomTableViewCell.swift in Sources */,
 				13B6C05028F8C49D0065CE4E /* SceneDelegate.swift in Sources */,
 				130B9C992924BFB400FC034D /* DataManager.swift in Sources */,
 				13B6C06928F9051D0065CE4E /* Utilities.swift in Sources */,
