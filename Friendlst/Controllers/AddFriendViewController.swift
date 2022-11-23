@@ -50,10 +50,16 @@ class AddFriendViewController: UITableViewController {
     
     // MARK: - Event Handlers
     @IBAction func donePressed(_ sender: UIBarButtonItem) {
-        guard firstNameText.isValid() else { presentAlertController(entry: "First name"); return }
-        guard lastNameText.isValid() else { presentAlertController(entry: "Last name"); return }
-        guard cityText.isValid() else { presentAlertController(entry: "City"); return }
-        guard stateText.isValid() else { presentAlertController(entry: "State"); return }
+        guard firstNameText.isValid() else { presentAlertController(entry: "First name is a required field"); return }
+        guard lastNameText.isValid() else { presentAlertController(entry: "Last name is a required field"); return }
+        guard cityText.isValid() else { presentAlertController(entry: "City is a required field"); return }
+        guard stateText.isValid() else { presentAlertController(entry: "State is a required field"); return }
+        
+        
+        if phoneText.text!.count > 1 && phoneText.text!.count < 14 {
+            presentAlertController(entry: "Invalid Phone Number\n(XXX) XXX-XXXX")
+        }
+        
         
         if let existingFriend = existingFriend {
             existingFriend.setValue(firstNameText.text, forKey: "firstName")
@@ -104,7 +110,7 @@ class AddFriendViewController: UITableViewController {
     
     // MARK: - Private Functions
     func presentAlertController(entry: String) {
-        let alert = UIAlertController(title: "Oops", message: "\(entry) is a required field", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Oops", message: "\(entry)", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
         alert.addAction(action)
         present(alert, animated: true)
@@ -119,8 +125,26 @@ class AddFriendViewController: UITableViewController {
         phoneText.delegate = self
     }
     
-    func saveFriend() {
+    func format(with mask: String, phone: String) -> String {
+        let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+        var result = ""
+        var index = numbers.startIndex
         
+        // iterate over the mask characters until the iterator of numbers ends
+        for ch in mask where index < numbers.endIndex {
+            if ch == "X" {
+                // mask requires a number in this place, so take the next one
+                result.append(numbers[index])
+                
+                // move numbers iterator to the next index
+                index = numbers.index(after: index)
+                
+            } else {
+                // just append a mask character
+                result.append(ch)
+            }
+        }
+        return result
     }
 }
 
@@ -148,6 +172,10 @@ extension AddFriendViewController: UITextFieldDelegate {
             let newString = currentString.replacingCharacters(in: range, with: string)
             
             return newString.count <= 2 && allowedCharacter.isSuperset(of: characterSet)
+        } else if textField == phoneText {
+            let newString = (phoneText.text! as NSString).replacingCharacters(in: range, with: string)
+            phoneText.text = format(with: "(XXX) XXX-XXXX", phone: newString)
+            return false
         } else {
             return true
         }
