@@ -145,7 +145,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Profile Pic" id="ckb-gk-yv3">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CommentsCell" rowHeight="55" id="8tr-38-HSM">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ProfilePicCell" rowHeight="55" id="8tr-38-HSM">
                                         <rect key="frame" x="20" y="331.33333015441895" width="350" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8tr-38-HSM" id="fro-pb-Njx">
@@ -261,6 +261,7 @@
                         <outlet property="lastNameText" destination="TKO-s0-dXg" id="ohn-0h-OZn"/>
                         <outlet property="phoneText" destination="6w2-Ur-NL4" id="qkf-cb-0KN"/>
                         <outlet property="stateText" destination="fLA-43-Cht" id="RkH-Bp-bsm"/>
+                        <outlet property="userPic" destination="iVb-Xs-XLP" id="12x-Yu-6lR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vVm-6z-AqE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

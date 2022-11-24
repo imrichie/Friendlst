@@ -22,6 +22,7 @@ class AddFriendViewController: UITableViewController {
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var phoneText: UITextField!
     @IBOutlet weak var commentsText: UITextView!
+    @IBOutlet weak var userPic: UILabel!
     
     weak var managedObjectContext: NSManagedObjectContext?
     weak var delegate: AddFriendViewControllerDelegate?
@@ -33,6 +34,8 @@ class AddFriendViewController: UITableViewController {
         
         if let friendToEdit = existingFriend {
             self.title = "Edit Friend"
+            self.userPic.text = "Change Picture"
+            
             firstNameText.text = friendToEdit.value(forKey: "firstName") as? String
             lastNameText.text = friendToEdit.value(forKey: "lastName") as? String
             cityText.text = friendToEdit.value(forKey: "city") as? String
@@ -109,8 +112,15 @@ class AddFriendViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // handle any photo libray/camera logic
         if indexPath.section == 1 {
             tableView.deselectRow(at: indexPath, animated: true)
+            
+            let imagePicker = UIImagePickerController()
+            imagePicker.sourceType = .camera
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            present(imagePicker, animated: true)
         }
     }
     
@@ -201,5 +211,15 @@ extension AddFriendViewController: UITextFieldDelegate {
             commentsText.becomeFirstResponder()
         }
         return true
+    }
+}
+
+extension AddFriendViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        dismiss(animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
     }
 }
