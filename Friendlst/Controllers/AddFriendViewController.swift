@@ -101,10 +101,16 @@ class AddFriendViewController: UITableViewController {
         switch section {
         case 0:
             return 4
-        case 1:
+        case 2:
             return 2
         default:
             return 1
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
     
