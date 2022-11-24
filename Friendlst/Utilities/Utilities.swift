@@ -11,6 +11,7 @@ struct Constants {
     struct CellNames {
         static let friendCell = "FriendCell"
         static let emptyCell = "EmptyCell"
+        static let customFriendCell = "CustomFriendCell"
     }
     
     struct SegueNames {

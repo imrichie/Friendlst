@@ -14,7 +14,8 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavbar()        
+        // configureNavbar()
+        registerCustomTableViewCell()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +49,11 @@ class ViewController: UITableViewController {
         navigationController?.navigationBar.standardAppearance = appearance
     }
     
+    func registerCustomTableViewCell() {
+        let cellNib = UINib(nibName: "CustomTableViewCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: Constants.CellNames.customFriendCell)
+    }
+    
     // MARK: - TableView Delegates
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listOfFriends.count == 0 ? 1 : listOfFriends.count
@@ -55,18 +61,9 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let friend = listOfFriends[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellNames.friendCell, for: indexPath)
-        
-        var content = cell.defaultContentConfiguration()
-        content.text = "\(friend.value(forKey: "lastName") as! String), \(friend.value(forKey: "firstName") as! String)"
-        content.textProperties.font = .systemFont(ofSize: 17.0)
-        content.secondaryText = "\(friend.value(forKey: "city") as! String), \(friend.value(forKey: "state") as! String)"
-        content.secondaryTextProperties.font = .systemFont(ofSize: 13.0)
-        content.secondaryTextProperties.color = .secondaryLabel
-        content.image = UIImage(systemName: "person.crop.circle")
-        
-        cell.contentConfiguration = content
-        cell.accessoryType = .disclosureIndicator
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellNames.customFriendCell, for: indexPath) as! CustomTableViewCell
+        cell.userNameLabel.text = "\(friend.value(forKey: "lastName") as! String), \(friend.value(forKey: "firstName") as! String)"
+        cell.locationLabel.text = "\(friend.value(forKey: "city") as! String), \(friend.value(forKey: "state") as! String)"
         
         return cell
     }
