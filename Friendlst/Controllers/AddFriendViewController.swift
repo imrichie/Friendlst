@@ -116,11 +116,7 @@ class AddFriendViewController: UITableViewController {
         if indexPath.section == 1 {
             tableView.deselectRow(at: indexPath, animated: true)
             
-            let imagePicker = UIImagePickerController()
-            imagePicker.sourceType = .camera
-            imagePicker.delegate = self
-            imagePicker.allowsEditing = true
-            present(imagePicker, animated: true)
+            showPhotoMenu()
         }
     }
     
@@ -161,6 +157,46 @@ class AddFriendViewController: UITableViewController {
             }
         }
         return result
+    }
+    
+    func chooseFromLibrary() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true)
+    }
+    
+    func takePhotoWithCamera() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .camera
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true)
+    }
+    
+    func showPhotoMenu() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(actionCancel)
+        
+        let actionPhoto = UIAlertAction(title: "Take Photo", style: .default)
+        alert.addAction(actionPhoto)
+        
+        let actionLibrary = UIAlertAction(title: "Choose from Library", style: .default) { _ in
+            self.chooseFromLibrary()
+        }
+        
+        alert.addAction(actionLibrary)
+        present(alert, animated: true)
+    }
+    
+    func pickPhoto() {
+        if true || UIImagePickerController.isSourceTypeAvailable(.camera) {
+            showPhotoMenu()
+        } else {
+            chooseFromLibrary()
+        }
     }
 }
 
