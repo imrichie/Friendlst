@@ -74,6 +74,7 @@ class AddFriendViewController: UITableViewController {
             existingFriend.setValue(emailText.text, forKey: "email")
             existingFriend.setValue(phoneText.text, forKey: "phoneNumber")
             existingFriend.setValue(commentsText.text, forKey: "comments")
+            existingFriend.setValue(photoData, forKey: "profilePhoto")
             
             do {
                 try managedObjectContext!.save()
@@ -91,6 +92,7 @@ class AddFriendViewController: UITableViewController {
             friend.email = emailText.text ?? ""
             friend.phoneNumber = phoneText.text ?? ""
             friend.comments = commentsText.text ?? ""
+            friend.profilePhoto = photoData
             
             do {
                 try managedObjectContext!.save()

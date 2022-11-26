@@ -2,7 +2,7 @@
 //  Friend+CoreDataProperties.swift
 //  Friendlst
 //
-//  Created by Richie Flores on 11/14/22.
+//  Created by Richie Flores on 11/25/22.
 //
 //
 
@@ -16,14 +16,14 @@ extension Friend {
         return NSFetchRequest<Friend>(entityName: "Friend")
     }
 
+    @NSManaged public var city: String
+    @NSManaged public var comments: String?
+    @NSManaged public var email: String?
     @NSManaged public var firstName: String
     @NSManaged public var lastName: String
-    @NSManaged public var city: String
-    @NSManaged public var state: String
-    
-    @NSManaged public var email: String?
     @NSManaged public var phoneNumber: String?
-    @NSManaged public var comments: String?
+    @NSManaged public var profilePhoto: Data?
+    @NSManaged public var state: String
 
 }
 

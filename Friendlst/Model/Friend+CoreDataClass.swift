@@ -2,7 +2,7 @@
 //  Friend+CoreDataClass.swift
 //  Friendlst
 //
-//  Created by Richie Flores on 11/14/22.
+//  Created by Richie Flores on 11/25/22.
 //
 //
 

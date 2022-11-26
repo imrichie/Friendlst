@@ -22,7 +22,6 @@ class ViewController: UITableViewController {
         super.viewWillAppear(animated)
         let fetchRequest = Friend.fetchRequest()
         let friendCount = try? managedObjectContext?.count(for: fetchRequest)
-        print(">>> NUMBER OF FRIENDS: \(friendCount ?? 0)")
         
         do {
             listOfFriends = try managedObjectContext!.fetch(fetchRequest)
@@ -62,9 +61,14 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let friend = listOfFriends[indexPath.row]
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellNames.customFriendCell, for: indexPath) as! CustomTableViewCell
         cell.userNameLabel.text = "\(friend.value(forKey: "lastName") as! String), \(friend.value(forKey: "firstName") as! String)"
         cell.locationLabel.text = "\(friend.value(forKey: "city") as! String), \(friend.value(forKey: "state") as! String)"
+        
+        if let photoData = friend.value(forKey: "profilePhoto") as? Data {
+            cell.personImage.image = UIImage(data: photoData)
+        }
         
         return cell
     }
