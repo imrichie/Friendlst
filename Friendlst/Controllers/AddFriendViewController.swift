@@ -22,7 +22,7 @@ class AddFriendViewController: UITableViewController {
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var phoneText: UITextField!
     @IBOutlet weak var commentsText: UITextView!
-    @IBOutlet weak var userPic: UILabel!
+    @IBOutlet weak var addPhotoLabel: UILabel!
     
     weak var managedObjectContext: NSManagedObjectContext?
     weak var delegate: AddFriendViewControllerDelegate?
@@ -34,7 +34,7 @@ class AddFriendViewController: UITableViewController {
         
         if let friendToEdit = existingFriend {
             self.title = "Edit Friend"
-            self.userPic.text = "Change Picture"
+            self.addPhotoLabel.text = "Change Picture"
             
             firstNameText.text = friendToEdit.value(forKey: "firstName") as? String
             lastNameText.text = friendToEdit.value(forKey: "lastName") as? String
@@ -113,9 +113,8 @@ class AddFriendViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // handle any photo libray/camera logic
-        if indexPath.section == 1 {
+        if indexPath.section == 1 && indexPath.row == 0 {
             tableView.deselectRow(at: indexPath, animated: true)
-            
             showPhotoMenu()
         }
     }
@@ -177,22 +176,25 @@ class AddFriendViewController: UITableViewController {
     
     func showPhotoMenu() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
         let actionCancel = UIAlertAction(title: "Cancel", style: .cancel)
         alert.addAction(actionCancel)
         
-        let actionPhoto = UIAlertAction(title: "Take Photo", style: .default)
+        let actionPhoto = UIAlertAction(title: "Take Photo", style: .default) { _ in
+            self.takePhotoWithCamera()
+        }
         alert.addAction(actionPhoto)
         
         let actionLibrary = UIAlertAction(title: "Choose from Library", style: .default) { _ in
             self.chooseFromLibrary()
         }
-        
         alert.addAction(actionLibrary)
+        
         present(alert, animated: true)
     }
     
     func pickPhoto() {
-        if true || UIImagePickerController.isSourceTypeAvailable(.camera) {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
             showPhotoMenu()
         } else {
             chooseFromLibrary()

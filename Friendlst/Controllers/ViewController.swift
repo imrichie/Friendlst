@@ -20,8 +20,7 @@ class ViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: Constants.CoreDataNames.entityName)
+        let fetchRequest = Friend.fetchRequest()
         
         do {
             listOfFriends = try managedObjectContext!.fetch(fetchRequest)
@@ -106,6 +105,7 @@ class ViewController: UITableViewController {
 }
 
 extension ViewController: AddFriendViewControllerDelegate {
+    
     func addFriendViewController(_ controller: AddFriendViewController, didFinishAddingFriend friend: NSManagedObject) {
         let newRowIndex = listOfFriends.count
         listOfFriends.append(friend)
