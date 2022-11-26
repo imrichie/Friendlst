@@ -68,6 +68,8 @@ class ViewController: UITableViewController {
         
         if let photoData = friend.value(forKey: "profilePhoto") as? Data {
             cell.personImage.image = UIImage(data: photoData)
+        } else {
+            cell.personImage.image = UIImage(systemName: "person.circle")
         }
         
         return cell
