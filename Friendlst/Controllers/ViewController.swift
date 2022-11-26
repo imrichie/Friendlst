@@ -21,6 +21,8 @@ class ViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let fetchRequest = Friend.fetchRequest()
+        let friendCount = try? managedObjectContext?.count(for: fetchRequest)
+        print(">>> NUMBER OF FRIENDS: \(friendCount ?? 0)")
         
         do {
             listOfFriends = try managedObjectContext!.fetch(fetchRequest)

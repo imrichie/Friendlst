@@ -28,6 +28,8 @@ class AddFriendViewController: UITableViewController {
     weak var delegate: AddFriendViewControllerDelegate?
     weak var existingFriend: NSManagedObject?
     
+    var photoData: Data?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setTextViewDelegates()
@@ -254,6 +256,12 @@ extension AddFriendViewController: UITextFieldDelegate {
 
 extension AddFriendViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let profilePic = info[.editedImage] as? UIImage {
+            if let photoData = profilePic.pngData() {
+                print(">>> SUCCESS - Transformed User Pic to Data type: \(photoData)")
+                self.photoData = photoData
+            }
+        }
         dismiss(animated: true)
     }
     
