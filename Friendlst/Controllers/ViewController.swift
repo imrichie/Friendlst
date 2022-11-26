@@ -67,6 +67,11 @@ class ViewController: UITableViewController {
         cell.locationLabel.text = "\(friend.value(forKey: "city") as! String), \(friend.value(forKey: "state") as! String)"
         
         if let photoData = friend.value(forKey: "profilePhoto") as? Data {
+            cell.personImage.layer.borderWidth = 1
+            cell.personImage.layer.masksToBounds = false
+            cell.personImage.layer.borderColor = UIColor(named: "AccentColor")?.cgColor
+            cell.personImage.layer.cornerRadius = cell.personImage.frame.height/2
+            cell.personImage.clipsToBounds = true
             cell.personImage.image = UIImage(data: photoData)
         } else {
             cell.personImage.image = UIImage(systemName: "person.circle")
