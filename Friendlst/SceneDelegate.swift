@@ -74,3 +74,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
 }
+
+/*
+ 
+ give you some reasons why I think this is the better approach
+ and then you can give me some feedback
+ */
