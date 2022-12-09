@@ -12,18 +12,36 @@ class DataManager {
     var managedObjectContext: NSManagedObjectContext!
     var listOfFriends: [NSManagedObject] = []
     
+    // Adding a Friend
     func addFriend(newFriend: NSManagedObject) {
         listOfFriends.append(newFriend)
     }
     
-    func saveFriend() {
+    // Deleting a Friend
+    func deleteFriend(friend: NSManagedObject) {
+        self.managedObjectContext.delete(friend)
+    }
+    
+    // Saving data
+    func saveData() {
         if managedObjectContext.hasChanges {
             do {
                 try managedObjectContext.save()
             } catch {
                 let nserror = error as NSError
-                fatalError(">>> ERROR SAVING DATA: \(nserror), \(nserror.userInfo)")
+                fatalError(">>> CORE DATA Failed to save data: \(nserror), \(nserror.userInfo)")
             }
+        }
+    }
+    
+    // Fetch data
+    func fetchData() {
+        let fetchRequest = Friend.fetchRequest()
+        
+        do {
+            listOfFriends = try managedObjectContext.fetch(fetchRequest)
+        } catch {
+            fatalError(">>> CORE DATA Failed to fetch data \(error.localizedDescription)")
         }
     }
 }

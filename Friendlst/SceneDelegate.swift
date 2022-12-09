@@ -12,12 +12,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // MARK: - Instance Properties
     lazy var managedObjectContext = persistentContainer.viewContext
     var window: UIWindow?
+    var dataManager: DataManager = DataManager()
     
     // MARK: - Delegate Methods
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         let navController = window!.rootViewController as! UINavigationController
         let mainViewController = navController.viewControllers.first! as! ViewController
         mainViewController.managedObjectContext = managedObjectContext
+        dataManager.managedObjectContext = self.managedObjectContext
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -52,7 +54,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     // MARK: - Core Data stack
-    
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Friendlst")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
