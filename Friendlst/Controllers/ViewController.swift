@@ -21,7 +21,6 @@ class ViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let fetchRequest = Friend.fetchRequest()
-        let friendCount = try? managedObjectContext?.count(for: fetchRequest)
         
         do {
             listOfFriends = try managedObjectContext!.fetch(fetchRequest)
@@ -56,7 +55,7 @@ class ViewController: UITableViewController {
     
     // MARK: - TableView Delegates
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listOfFriends.count == 0 ? 1 : listOfFriends.count
+        return listOfFriends.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -93,11 +92,23 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteSwipeAction = UIContextualAction(style: .destructive, title: "Remove", handler: {action, view, _ in
+            // identity the friend by index
+            let friend = self.listOfFriends[indexPath.row]
+            // delete the friend from the context
+            self.managedObjectContext!.delete(friend)
+            // delete the friend from the datasource
             self.listOfFriends.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            if self.managedObjectContext!.hasChanges {
+                do {
+                    try self.managedObjectContext!.save()
+                } catch {
+                    let nserror = error as NSError
+                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                }
+            }
             return
         })
-        
         return UISwipeActionsConfiguration(actions: [deleteSwipeAction])
     }
     
