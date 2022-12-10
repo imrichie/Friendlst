@@ -10,7 +10,6 @@ import CoreData
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // MARK: - Instance Properties
-    lazy var managedObjectContext = persistentContainer.viewContext
     var window: UIWindow?
     var dataManager: DataManager = DataManager()
     
@@ -18,8 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         let navController = window!.rootViewController as! UINavigationController
         let mainViewController = navController.viewControllers.first! as! ViewController
-        mainViewController.managedObjectContext = managedObjectContext
-        dataManager.managedObjectContext = self.managedObjectContext
+        mainViewController.dataManager = dataManager
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -45,39 +43,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
-        // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
-        
-        // Save changes in the application's managed object context when the application transitions to the background.
-        saveContext()
-    }
-    
-    // MARK: - Core Data stack
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "Friendlst")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
-    
-    func saveContext() {
-        if managedObjectContext.hasChanges {
-            do {
-                try managedObjectContext.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
+        dataManager.saveData()
     }
 }
-
-/*
- 
- give you some reasons why I think this is the better approach
- and then you can give me some feedback
- */

@@ -24,10 +24,10 @@ class AddFriendViewController: UITableViewController {
     @IBOutlet weak var commentsText: UITextView!
     @IBOutlet weak var addPhotoLabel: UILabel!
     
-    weak var managedObjectContext: NSManagedObjectContext?
     weak var delegate: AddFriendViewControllerDelegate?
-    weak var existingFriend: NSManagedObject?
-    
+
+    var existingFriend: NSManagedObject?
+    var dataManager: DataManager!
     var photoData: Data?
     
     override func viewDidLoad() {
@@ -76,15 +76,10 @@ class AddFriendViewController: UITableViewController {
             existingFriend.setValue(commentsText.text, forKey: "comments")
             existingFriend.setValue(photoData, forKey: "profilePhoto")
             
-            do {
-                try managedObjectContext!.save()
-                delegate?.addFriendViewController(self, didFinishedEditingFriend: existingFriend)
-            } catch {
-                fatalError(">>> ERROR editing existing friend")
-            }
+            dataManager.saveData()
             
         } else {
-            let friend = Friend(context: managedObjectContext!)
+            let friend = Friend(context: dataManager.managedObjectContext)
             friend.firstName = firstNameText.text!
             friend.lastName = lastNameText.text!
             friend.city = cityText.text!
@@ -94,12 +89,7 @@ class AddFriendViewController: UITableViewController {
             friend.comments = commentsText.text ?? ""
             friend.profilePhoto = photoData
             
-            do {
-                try managedObjectContext!.save()
-                delegate?.addFriendViewController(self, didFinishAddingFriend: friend)
-            } catch {
-                fatalError(">>> ERROR Saving data to Core Data: \(error.localizedDescription)")
-            }
+            dataManager.saveData()
         }
     }
 

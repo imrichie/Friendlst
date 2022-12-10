@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 
 class DataManager {
-    var managedObjectContext: NSManagedObjectContext!
+    lazy var managedObjectContext = persistentContainer.viewContext
     var listOfFriends: [NSManagedObject] = []
     
     // Adding a Friend
@@ -44,4 +44,14 @@ class DataManager {
             fatalError(">>> CORE DATA Failed to fetch data \(error.localizedDescription)")
         }
     }
+    
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "Friendlst")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
 }

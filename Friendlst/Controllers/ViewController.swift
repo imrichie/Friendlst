@@ -9,8 +9,7 @@ import UIKit
 import CoreData
 
 class ViewController: UITableViewController {
-    var managedObjectContext: NSManagedObjectContext? 
-    var listOfFriends: [NSManagedObject] = []
+    var dataManager: DataManager!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,20 +19,14 @@ class ViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let fetchRequest = Friend.fetchRequest()
-        
-        do {
-            listOfFriends = try managedObjectContext!.fetch(fetchRequest)
-        } catch {
-            fatalError(">>> ERROR Loading from Core Data \(error.localizedDescription)")
-        }
+        dataManager.fetchData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.delegate = self
         let index = UserDefaults.standard.integer(forKey: "FriendIndex")
         if index != -1 {
-            let friend = listOfFriends[index]
+            let friend = dataManager.listOfFriends[index]
             performSegue(withIdentifier: Constants.SegueNames.editFriendSegue, sender: friend)
         }
     }
@@ -55,11 +48,11 @@ class ViewController: UITableViewController {
     
     // MARK: - TableView Delegates
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listOfFriends.count
+        return dataManager.listOfFriends.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let friend = listOfFriends[indexPath.row]
+        let friend = dataManager.listOfFriends[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellNames.customFriendCell, for: indexPath) as! CustomTableViewCell
         cell.userNameLabel.text = "\(friend.value(forKey: "lastName") as! String), \(friend.value(forKey: "firstName") as! String)"
@@ -81,7 +74,7 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let selectedFriend = listOfFriends[indexPath.row]
+        let selectedFriend = dataManager.listOfFriends[indexPath.row]
         self.performSegue(withIdentifier: Constants.SegueNames.editFriendSegue, sender: selectedFriend)
         UserDefaults.standard.set(indexPath.row, forKey: "FriendIndex")
     }
@@ -92,21 +85,13 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteSwipeAction = UIContextualAction(style: .destructive, title: "Remove", handler: {action, view, _ in
-            // identity the friend by index
-            let friend = self.listOfFriends[indexPath.row]
-            // delete the friend from the context
-            self.managedObjectContext!.delete(friend)
-            // delete the friend from the datasource
-            self.listOfFriends.remove(at: indexPath.row)
+            let friend = self.dataManager.listOfFriends[indexPath.row]
+            
+            self.dataManager.deleteFriend(friend: friend)
+            self.dataManager.listOfFriends.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            if self.managedObjectContext!.hasChanges {
-                do {
-                    try self.managedObjectContext!.save()
-                } catch {
-                    let nserror = error as NSError
-                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-                }
-            }
+            self.dataManager.saveData()
+            
             return
         })
         return UISwipeActionsConfiguration(actions: [deleteSwipeAction])
@@ -117,12 +102,12 @@ class ViewController: UITableViewController {
         if segue.identifier == Constants.SegueNames.addFriendSegue {
             let controller = segue.destination as! AddFriendViewController
             controller.delegate = self
-            controller.managedObjectContext = managedObjectContext
+            controller.dataManager = dataManager
             
         } else if (segue.identifier == Constants.SegueNames.editFriendSegue) {
             let controller = segue.destination as! AddFriendViewController
             controller.delegate = self
-            controller.managedObjectContext = managedObjectContext
+            controller.dataManager = dataManager
             controller.existingFriend = sender as? NSManagedObject
         }
     }
@@ -131,16 +116,16 @@ class ViewController: UITableViewController {
 extension ViewController: AddFriendViewControllerDelegate {
     
     func addFriendViewController(_ controller: AddFriendViewController, didFinishAddingFriend friend: NSManagedObject) {
-        let newRowIndex = listOfFriends.count
-        listOfFriends.append(friend)
+        let newRowIndex = dataManager.listOfFriends.count
+        dataManager.listOfFriends.append(friend)
         tableView.insertRows(at: [IndexPath(row: newRowIndex, section: 0)], with: .fade)
 
         navigationController?.popViewController(animated: true)
     }
 
     func addFriendViewController(_ controller: AddFriendViewController, didFinishedEditingFriend currentFriend: NSManagedObject) {
-        guard let currentFriendIndex = listOfFriends.firstIndex(of: currentFriend) else { return }
-        listOfFriends[currentFriendIndex] = currentFriend
+        guard let currentFriendIndex = dataManager.listOfFriends.firstIndex(of: currentFriend) else { return }
+        dataManager.listOfFriends[currentFriendIndex] = currentFriend
         tableView.reloadRows(at: [IndexPath(row: currentFriendIndex, section: 0)], with: .fade)
 
         navigationController?.popViewController(animated: true)
