@@ -13,13 +13,13 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavbar()
+        //configureNavbar()
         registerCustomTableViewCell()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //dataManager.fetchData()
+        dataManager.fetchData()
     }
     
     override func viewDidAppear(_ animated: Bool) {

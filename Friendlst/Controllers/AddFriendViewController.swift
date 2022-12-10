@@ -77,6 +77,7 @@ class AddFriendViewController: UITableViewController {
             existingFriend.setValue(photoData, forKey: "profilePhoto")
             
             dataManager.saveData()
+            delegate?.addFriendViewController(self, didFinishedEditingFriend: existingFriend)
             
         } else {
             let friend = Friend(context: dataManager.managedObjectContext)
@@ -90,6 +91,7 @@ class AddFriendViewController: UITableViewController {
             friend.profilePhoto = photoData
             
             dataManager.saveData()
+            delegate?.addFriendViewController(self, didFinishAddingFriend: friend)
         }
     }
 
