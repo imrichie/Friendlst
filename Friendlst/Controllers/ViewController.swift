@@ -13,13 +13,13 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // configureNavbar()
+        configureNavbar()
         registerCustomTableViewCell()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        dataManager.fetchData()
+        //dataManager.fetchData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -48,7 +48,17 @@ class ViewController: UITableViewController {
     
     // MARK: - TableView Delegates
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataManager.listOfFriends.count
+        if dataManager.listOfFriends.count > 0 {
+            return dataManager.listOfFriends.count
+        } else {
+            let image = UIImage(named: "Empty State")
+            let noDataImage = UIImageView(image: image)
+            noDataImage.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.height)
+            noDataImage.contentMode = .scaleAspectFit
+            tableView.backgroundView = noDataImage
+            tableView.separatorStyle = .none
+            return 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
