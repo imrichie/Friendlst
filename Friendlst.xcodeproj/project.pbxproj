@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		130B9C992924BFB400FC034D /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130B9C982924BFB400FC034D /* DataManager.swift */; };
-		13327CE9293DB62F00E1E7DC /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13327CE7293DB62F00E1E7DC /* EmptyTableViewCell.swift */; };
-		13327CEA293DB62F00E1E7DC /* EmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13327CE8293DB62F00E1E7DC /* EmptyTableViewCell.xib */; };
 		1367AC0C2931FCFE00C0D9D2 /* Friend+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1367AC0A2931FCFE00C0D9D2 /* Friend+CoreDataClass.swift */; };
 		1367AC0D2931FCFE00C0D9D2 /* Friend+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1367AC0B2931FCFE00C0D9D2 /* Friend+CoreDataProperties.swift */; };
 		13B6C04E28F8C49D0065CE4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B6C04D28F8C49D0065CE4E /* AppDelegate.swift */; };
@@ -27,8 +25,6 @@
 
 /* Begin PBXFileReference section */
 		130B9C982924BFB400FC034D /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		13327CE7293DB62F00E1E7DC /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
-		13327CE8293DB62F00E1E7DC /* EmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableViewCell.xib; sourceTree = "<group>"; };
 		1367AC0A2931FCFE00C0D9D2 /* Friend+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friend+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1367AC0B2931FCFE00C0D9D2 /* Friend+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friend+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		13B6C04A28F8C49D0065CE4E /* Friendlst.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Friendlst.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,7 +101,6 @@
 				13B6C05128F8C49D0065CE4E /* ViewController.swift */,
 				13CB81672910E3C500D77B73 /* AddFriendViewController.swift */,
 				13E30C23292DF671001A90AC /* CustomTableViewCell.swift */,
-				13327CE7293DB62F00E1E7DC /* EmptyTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -126,7 +121,6 @@
 				13B6C05328F8C49D0065CE4E /* Main.storyboard */,
 				13B6C05B28F8C49F0065CE4E /* LaunchScreen.storyboard */,
 				13E30C24292DF671001A90AC /* CustomTableViewCell.xib */,
-				13327CE8293DB62F00E1E7DC /* EmptyTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -191,7 +185,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B6C05D28F8C49F0065CE4E /* LaunchScreen.storyboard in Resources */,
-				13327CEA293DB62F00E1E7DC /* EmptyTableViewCell.xib in Resources */,
 				13B6C05A28F8C49F0065CE4E /* Assets.xcassets in Resources */,
 				13E30C26292DF671001A90AC /* CustomTableViewCell.xib in Resources */,
 				13B6C05528F8C49D0065CE4E /* Main.storyboard in Resources */,
@@ -215,7 +208,6 @@
 				1367AC0D2931FCFE00C0D9D2 /* Friend+CoreDataProperties.swift in Sources */,
 				130B9C992924BFB400FC034D /* DataManager.swift in Sources */,
 				13B6C06928F9051D0065CE4E /* Utilities.swift in Sources */,
-				13327CE9293DB62F00E1E7DC /* EmptyTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
