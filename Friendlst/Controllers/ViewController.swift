@@ -18,8 +18,16 @@ class ViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print(">>> ViewWillAppear is Called")
         super.viewWillAppear(animated)
-        dataManager.fetchData()
+        // dataManager.fetchData()
+        
+        if dataManager.listOfFriends.count == 0 {
+            print("Data is empty")
+        } else {
+            print("We have data: \(dataManager.listOfFriends.count) friends")
+            tableView.restore()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -48,17 +56,13 @@ class ViewController: UITableViewController {
     
     // MARK: - TableView Delegates
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if dataManager.listOfFriends.count > 0 {
-            return dataManager.listOfFriends.count
+        if dataManager.listOfFriends.count == 0 {
+            print(">>> Running empty state logic")
+            tableView.setEmptyStateView()
         } else {
-            let image = UIImage(named: "Empty State")
-            let noDataImage = UIImageView(image: image)
-            noDataImage.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.height)
-            noDataImage.contentMode = .scaleAspectFit
-            tableView.backgroundView = noDataImage
-            tableView.separatorStyle = .none
-            return 0
+            tableView.restore()
         }
+        return dataManager.listOfFriends.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -147,5 +151,29 @@ extension ViewController: UINavigationControllerDelegate {
         if viewController == self {
             UserDefaults.standard.set(-1, forKey: "FriendIndex")
         }
+    }
+}
+
+extension UITableView {
+    func setEmptyStateView() {
+//        let emptyStateView = EmptyStateView(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
+//        self.backgroundView = emptyStateView
+//        self.separatorStyle = .none
+        
+        let emptyStateImage = UIImage(named: "EmptyState")
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.frame.size.width = 500
+        imageView.frame.size.height = 500
+        imageView.center = self.center
+        imageView.image = emptyStateImage
+        
+        self.backgroundView = imageView
+        self.separatorStyle = .none
+    }
+    
+    func restore() {
+        self.backgroundView = nil
+        self.separatorStyle = .singleLine
     }
 }

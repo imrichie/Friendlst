@@ -27,6 +27,10 @@ struct Constants {
         static let dataModel = "Friendlst"
         static let entityName = "Friend"
     }
+    
+    struct CustomViewNames {
+        static let emptyStateView = "EmptyStateView"
+    }
 }
 
 struct Persistance {
