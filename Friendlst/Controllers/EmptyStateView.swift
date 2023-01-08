@@ -10,23 +10,36 @@ import UIKit
 class EmptyStateView: UIView {
 
     @IBOutlet var contentView: EmptyStateView!
-    @IBAction func addNewFriendButton(_ sender: Any) {
+    @IBOutlet weak var addNewFriendButton: UIButton!
+    
+    @IBAction func addNewFriend(_ sender: Any) {
         print(">>> Adding new friend")
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        print(">>> This empty state view is initialized")
+        configureButton()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        initSubViews()
+        configureEmptyStateView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        initSubViews()
+        configureEmptyStateView()
     }
     
-    func initSubViews() {
-        let nib = Bundle.main.loadNibNamed(Constants.CustomViewNames.emptyStateView, owner: self, options: nil)![0] as! UIView
+    func configureEmptyStateView() {
+        let nib = Bundle.main.loadNibNamed("EmptyStateView", owner: self, options: nil)?.first as! UIView
         nib.frame = bounds
-        addSubview(contentView)
+        nib.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        addSubview(nib)
+    }
+    
+    func configureButton() {
+        self.addNewFriendButton.layer.cornerRadius = 10
     }
 }

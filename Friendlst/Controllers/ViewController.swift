@@ -18,14 +18,13 @@ class ViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print(">>> ViewWillAppear is Called")
         super.viewWillAppear(animated)
         // dataManager.fetchData()
         
         if dataManager.listOfFriends.count == 0 {
-            print("Data is empty")
+            print(">>> Data is empty")
         } else {
-            print("We have data: \(dataManager.listOfFriends.count) friends")
+            print(">>> We have data: \(dataManager.listOfFriends.count) friends")
             tableView.restore()
         }
     }
@@ -156,20 +155,21 @@ extension ViewController: UINavigationControllerDelegate {
 
 extension UITableView {
     func setEmptyStateView() {
-//        let emptyStateView = EmptyStateView(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
-//        self.backgroundView = emptyStateView
-//        self.separatorStyle = .none
-        
-        let emptyStateImage = UIImage(named: "EmptyState")
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.frame.size.width = 500
-        imageView.frame.size.height = 500
-        imageView.center = self.center
-        imageView.image = emptyStateImage
-        
-        self.backgroundView = imageView
+        let emptyStateView = EmptyStateView(frame: CGRect(x: self.center.x, y: self.center.y, width: self.bounds.size.width, height: self.bounds.size.height))
+        self.backgroundView = emptyStateView
         self.separatorStyle = .none
+        
+//        let emptyStateImage = UIImage(named: "EmptyState")
+//        let imageView = UIImageView()
+//
+//        imageView.contentMode = .scaleAspectFit
+//        imageView.frame.size.width = 500
+//        imageView.frame.size.height = 500
+//        imageView.center = self.center
+//        imageView.image = emptyStateImage
+        
+//        self.backgroundView = imageView
+//        self.separatorStyle = .none
     }
     
     func restore() {
