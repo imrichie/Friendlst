@@ -147,13 +147,15 @@ extension ViewController: UINavigationControllerDelegate {
 
 extension UITableView {
     func setEmptyStateView() {
-        let emptyStateView = EmptyStateView(frame: CGRect(x: self.center.x, y: self.center.y, width: self.bounds.size.width, height: self.bounds.size.height))
-        self.backgroundView = emptyStateView
-        self.separatorStyle = .none
+        let frameConfig = CGRect(x: center.x, y: center.y, width: bounds.size.width, height: bounds.size.height)
+        let emptyStateView = EmptyStateView(frame: frameConfig)
+        
+        backgroundView = emptyStateView
+        separatorStyle = .none
     }
     
     func restore() {
-        self.backgroundView = nil
-        self.separatorStyle = .singleLine
+        backgroundView = nil
+        separatorStyle = .singleLine
     }
 }
